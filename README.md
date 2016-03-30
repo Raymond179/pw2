@@ -12,6 +12,7 @@ Overzicht:
 #### Accessibility (Browser Technologies)
 Overzicht:
 - ajfdakd
-- adkf
+- adk
 
 ###### HTML semantischer
+
