@@ -7,6 +7,10 @@ Overzicht:
 - HTML semantischer
 - CSS..
 
+###### Before
+
+![alt tag](https://github.com/RaymondKorrel/pw2/blob/student/raymond/readme/before.jpg)
+
 ###### HTML semantischer
 
 #### Accessibility (Browser Technologies)
