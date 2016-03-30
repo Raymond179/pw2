@@ -8,9 +8,9 @@ Overzicht:
 - Critical CSS
 
 ###### Before
-DOM: 690ms <br />
-First Paint: 1600ms <br />
-Load event: 1810ms
+DOM: 1810ms <br />
+First Paint: 3500ms <br />
+Load event: 8640ms
 
 ![alt tag](https://github.com/RaymondKorrel/pw2/blob/student/raymond/readme/before.jpg)
 
