@@ -1,0 +1,14 @@
+<div class="bln-app" id="top" sidebar-state sideextension-state
+    ng-class="{
+        'bln-state-sidebaractive': sidebarIsActive,
+        'bln-state-sideextensionactive': sideextensionIsActive,
+        'bln-state-modalactive': modalIsActive
+    }">
+
+    <!-- Sidebar -->
+    <sidebar></sidebar>
+    
+    <!-- Page -->
+    <div class="page" ui-view set-window="height"></div>
+
+</div>

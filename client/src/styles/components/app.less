@@ -1,0 +1,95 @@
+.bln-app {
+    font-family: @font_sourcesanspro;
+    font-size: @font_defaultsize;
+    position: relative;
+    @sidebar_width: 80px;
+    @page_disabled_opacity: .5;
+
+    .page {
+        width: 100%;
+        height: 100%;
+        transition: opacity .35s;
+    }
+
+    .bln-sidebarcontainer {
+        position: fixed;
+        z-index: 15;
+        top: 0;
+        bottom: 0;
+        left: 0;
+
+        .bln-sidebar,
+        .bln-sub-toggle {
+            transform: translateX(-@sidebar_width);
+        }
+
+        .bln-sideextension {
+            transform: translateX(-100%);
+        }
+    }
+
+    &.bln-state-sidebaractive {
+        .bln-sidebarcontainer {
+            .bln-sidebar,
+            .bln-sub-toggle {
+                transform: none;
+            }
+        }
+
+        .page {
+            opacity: @page_disabled_opacity;
+            pointer-events: none;
+        }
+    }
+
+    &.bln-state-sideextensionactive {
+        .bln-sidebarcontainer {
+            .bln-sidebar,
+            .bln-sub-toggle {
+                transform: translate3d(-@sidebar_width, 0, 0);
+            }
+
+            .bln-sideextension.active {
+                transform: none;
+            }
+        }
+
+        .page {
+            opacity: @page_disabled_opacity;
+            pointer-events: none;
+        }
+    }
+
+    &.bln-state-modalactive {
+        pointer-events: none;
+    }
+
+    @media only screen and (min-width: @breakpoint_tablet) {
+        .bln-sidebarcontainer {
+            transform: none;
+            left: 0;
+
+            .bln-sidebar,
+            .bln-sub-toggle {
+                transform: none;
+            }
+        }
+
+        .page {
+            padding-left: @sidebar_width;
+        }
+
+        &.bln-state-sideextensionactive {
+            .bln-sidebarcontainer {
+                .bln-sidebar,
+                .bln-sub-toggle {
+                    transform: none;
+                }
+
+                .bln-sideextension.active {
+                    transform: none;
+                }
+            }
+        }
+    }
+}
