@@ -6,6 +6,9 @@
 Overzicht:
 - HTML semantischer
 - Critical CSS
+- Reduced images
+
+Alle tijden zijn gemeten met 4G (4mb/s 20ms RTT).
 
 ###### Before
 DOM: 1810ms <br />
@@ -32,10 +35,19 @@ Load event: 8730ms
 
 ![alt tag](https://github.com/RaymondKorrel/pw2/blob/student/raymond/readme/css.jpg)
 
+###### Reduced images
+Afbeeldingen kleiner maken met behulp van Grunt imagemin (met de plugins Pngquant en Mozjpeg). Alleen de kwaliteit verlaagd.
+
+DOM: 538ms <br />
+First Paint: 1810ms <br />
+Load event: 7510ms <br />
+Images: van 3.23mb naar 1.72mb
+
+![alt tag](https://github.com/RaymondKorrel/pw2/blob/student/raymond/readme/img.jpg)
+
 #### Accessibility (Browser Technologies)
 Overzicht:
 - ajfdakd
 - adk
 
 ###### HTML semantischer
-

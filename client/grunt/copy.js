@@ -37,6 +37,12 @@ module.exports = {
         cwd: 'src/statics/',
         src: '**',
         dest: 'build/'
+    },
+    images: {
+        expand: true,
+        cwd: '.grunt-tmp/images',
+        src: '**',
+        dest: 'build/images/'
     }
 
 };

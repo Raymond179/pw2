@@ -27,6 +27,11 @@ module.exports = {
         files: [ 'src/statics/**/*' ],
         tasks: [ 'clean:statics', 'copy:statics', 'replace:cache_bust', 'clean:tmp' ]
     },
+    images: {
+        files: [ 'src/statics/images' ],
+        tasks: [ 'imagemin:all', 'copy:images', 'clean:tmp' ]
+    },
+
 
     livereload: {
         options: {

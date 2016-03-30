@@ -28,6 +28,7 @@ module.exports = {
 
         // Compile and concatenate
         'less',                          // compile all less project files       -> .grunt-tmp/css/
+        'imagemin:all',
         'concat:styles_vendor',          // concatenate css vendor files         -> .grunt-tmp/css/
         'concat:scripts_project',        // concatenate js project files         -> .grunt-tmp/js/
         'concat:scripts_vendor',         // concatenate js vendor files          -> .grunt-tmp/js/
@@ -43,7 +44,9 @@ module.exports = {
         'copy:styles_notcritical',           // copy project & vendor styles files   -> build/css/
         'copy:styles_vendor',            // copy project & vendor styles files   -> build/css/
         'copy:statics',                  // copy all static files to the root    -> build/
+        'copy:images',           // copy project & vendor styles files   -> build/css/
         'replace:cache_bust',            // make sure js/css cache is busted     -> build/
+
 
         // Post
         'clean:tmp',                     // cleanup temporary generated files    -> .grunt-tmp/
@@ -86,7 +89,7 @@ module.exports = {
         'copy:styles_project',           // copy project & vendor styles files   -> build/css/
         'copy:styles_vendor',            // copy project & vendor styles files   -> build/css/
         'copy:statics',                  // copy all static files to the root    -> build/
-        'replace:cache_bust',            // make sure js/css cache is busted     -> build/
+        'replace:cache_bust',               // make sure js/css cache is busted     -> build/
 
         // Post
         'clean:tmp',                     // cleanup temporary generated files    -> .grunt-tmp/

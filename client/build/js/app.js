@@ -5371,505 +5371,1004 @@ app.service('scrollToggler', function() {
   'use strict';
 
   $templateCache.put('index.html',
-    "<!doctype html><!--[if lte IE 8]><script type=\"text/javascript\">\n" +
-    "    alert('This version of Internet Explorer is not supported by Bundlin. Please upgrade your browser to use Bundlin.');\n" +
-    "  </script><![endif]--><html lang=en ng-app=bundlin id=ng-app><head><meta charset=UTF-8><title ng-bind=SEO.title>Bundlin - the beauty of the web, bundled.</title><meta name=fragment content=!><style>.bln-sidebar {\n" +
-    "              position: absolute;\n" +
-    "              top: 0;\n" +
-    "              left: 0;\n" +
-    "              bottom: 0;\n" +
-    "              width: 80px;\n" +
-    "              background-color: #292929;\n" +
-    "              text-align: center;\n" +
-    "              border-right: 10px solid transparent;\n" +
-    "              z-index: 25;\n" +
-    "              box-sizing: content-box;\n" +
-    "              background-clip: padding-box;\n" +
-    "              -webkit-overflow-scrolling: touch;\n" +
-    "              -webkit-transition: border .35s, -webkit-transform .35s;\n" +
-    "                      transition: border .35s, transform .35s;\n" +
-    "              -webkit-animation: fadein .35s;\n" +
-    "                      animation: fadein .35s;\n" +
-    "            }\n" +
-    "            @-webkit-keyframes fadein {\n" +
-    "              from {\n" +
-    "                opacity: 0;\n" +
-    "              }\n" +
-    "              to {\n" +
-    "                opacity: 1;\n" +
-    "              }\n" +
-    "            }\n" +
-    "            @keyframes fadein {\n" +
-    "              from {\n" +
-    "                opacity: 0;\n" +
-    "              }\n" +
-    "              to {\n" +
-    "                opacity: 1;\n" +
-    "              }\n" +
-    "            }\n" +
-    "            .bln-sidebar .content {\n" +
-    "              position: relative;\n" +
-    "              height: 100%;\n" +
-    "              background-color: #292929;\n" +
-    "              z-index: 10;\n" +
-    "            }\n" +
-    "            .bln-sidebar .content .bottom {\n" +
-    "              position: absolute;\n" +
-    "              width: 100%;\n" +
-    "              bottom: 0;\n" +
-    "            }\n" +
-    "            .bln-sidebar .content .group {\n" +
-    "              list-style: none;\n" +
-    "            }\n" +
-    "            .bln-sidebar .content .group-topmargin {\n" +
-    "              padding-top: 10px;\n" +
-    "            }\n" +
-    "            .bln-sidebar .content .group-bottommargin {\n" +
-    "              padding-bottom: 10px;\n" +
-    "            }\n" +
-    "            .bln-sidebar .group-animate {\n" +
-    "              -webkit-animation: fadein_group 1.5s;\n" +
-    "                      animation: fadein_group 1.5s;\n" +
-    "            }\n" +
-    "            @-webkit-keyframes fadein_group {\n" +
-    "              0% {\n" +
-    "                opacity: 0;\n" +
-    "              }\n" +
-    "              65% {\n" +
-    "                opacity: 0;\n" +
-    "              }\n" +
-    "              100% {\n" +
-    "                opacity: 1;\n" +
-    "              }\n" +
-    "            }\n" +
-    "            @keyframes fadein_group {\n" +
-    "              0% {\n" +
-    "                opacity: 0;\n" +
-    "              }\n" +
-    "              65% {\n" +
-    "                opacity: 0;\n" +
-    "              }\n" +
-    "              100% {\n" +
-    "                opacity: 1;\n" +
-    "              }\n" +
-    "            }\n" +
-    "            @media only screen and (min-width: 768px) {\n" +
-    "              .bln-sidebar {\n" +
-    "                border-right-color: rgba(41, 41, 41, 0.1);\n" +
-    "              }\n" +
-    "            }\n" +
-    "            .bln-state-sidebaractive .bln-sidebar {\n" +
-    "              border-right-color: rgba(41, 41, 41, 0.1);\n" +
-    "            }\n" +
-    "            .bln-state-sideextensionactive .bln-sidebar {\n" +
-    "              border-right-color: transparent !important;\n" +
-    "            }\n" +
-    "            .bln-header {\n" +
-    "              height: 600px;\n" +
-    "              min-height: 550px;\n" +
-    "              max-height: 1500px;\n" +
-    "              background-color: #333;\n" +
-    "              color: #fff;\n" +
-    "              position: relative;\n" +
-    "            }\n" +
-    "            .bln-header .bln-headerbg,\n" +
-    "            .bln-header .bln-headercontent {\n" +
-    "              position: absolute;\n" +
-    "              top: 0;\n" +
-    "              right: 0;\n" +
-    "              bottom: 0;\n" +
-    "              left: 0;\n" +
-    "            }\n" +
-    "            .bln-header .bln-headerbg {\n" +
-    "              background-image: url(/images/intro-header-bg.jpg);\n" +
-    "              background-repeat: no-repeat;\n" +
-    "              background-position: top 0px left 68%;\n" +
-    "              background-size: cover;\n" +
-    "              opacity: .6;\n" +
-    "            }\n" +
-    "            .bln-header .bln-headercontent {\n" +
-    "              text-align: center;\n" +
-    "            }\n" +
-    "            .bln-header .bln-title {\n" +
-    "              text-shadow: 0px 0px 80px rgba(0, 0, 0, 0.3);\n" +
-    "            }\n" +
-    "            .bln-header .bln-title-sub {\n" +
-    "              margin-top: 10px;\n" +
-    "              text-shadow: 0px 0px 40px rgba(0, 0, 0, 0.6);\n" +
-    "            }\n" +
-    "            .bln-header .bln-button {\n" +
-    "              margin-top: 50px;\n" +
-    "              text-shadow: 0px 0px 80px rgba(0, 0, 0, 0.5);\n" +
-    "            }\n" +
-    "            .bln-header .bln-socials {\n" +
-    "              position: absolute;\n" +
-    "              top: 20px;\n" +
-    "              right: 20px;\n" +
-    "            }\n" +
-    "            .bln-header .bln-credits {\n" +
-    "              position: absolute;\n" +
-    "              right: 20px;\n" +
-    "              bottom: 20px;\n" +
-    "            }\n" +
-    "            .bln-header section {\n" +
-    "              position: absolute;\n" +
-    "              top: 50%;\n" +
-    "              left: 0;\n" +
-    "              right: 0;\n" +
-    "              height: 230px;\n" +
-    "              margin-top: -115px;\n" +
-    "              padding-left: 30px;\n" +
-    "              padding-right: 30px;\n" +
-    "            }\n" +
-    "            .bln-headerlayer {\n" +
-    "              position: absolute;\n" +
-    "              top: 0;\n" +
-    "              right: 0;\n" +
-    "              bottom: 0;\n" +
-    "              left: 0;\n" +
-    "              background-color: rgba(50, 50, 50, 0.4);\n" +
-    "              background-image: url(/images/intro-header-bg-shadow.jpg);\n" +
-    "              background-repeat: repeat-x;\n" +
-    "              background-position: bottom center;\n" +
-    "            }\n" +
-    "            @media screen and (max-width: 479px) {\n" +
-    "              .bln-header {\n" +
-    "                min-height: 550px;\n" +
-    "              }\n" +
-    "              .bln-header .bln-handcraftedby {\n" +
-    "                -webkit-transform: translate(-100px, 37px);\n" +
-    "                        transform: translate(-100px, 37px);\n" +
-    "              }\n" +
-    "              .bln-header section {\n" +
-    "                height: 350px;\n" +
-    "                margin-top: -200px;\n" +
-    "              }\n" +
-    "            }\n" +
-    "            @media screen and (min-width: 480px) {\n" +
-    "              .bln-header .bln-socials {\n" +
-    "                top: 40px;\n" +
-    "                right: 40px;\n" +
-    "              }\n" +
-    "              .bln-header .bln-credits {\n" +
-    "                right: 40px;\n" +
-    "                bottom: 40px;\n" +
-    "              }\n" +
-    "            }\n" +
-    "            .bln-sidebarcontainer {\n" +
-    "              position: relative;\n" +
-    "              -webkit-transition: opacity .5s;\n" +
-    "                      transition: opacity .5s;\n" +
-    "            }\n" +
-    "            .bln-sidebarcontainer .bln-sub-toggle {\n" +
-    "              position: absolute;\n" +
-    "              top: 0;\n" +
-    "              left: 80px;\n" +
-    "              padding: 20px;\n" +
-    "              opacity: .5;\n" +
-    "              -webkit-transition: opacity .2s, -webkit-transform .35s;\n" +
-    "                      transition: opacity .2s, transform .35s;\n" +
-    "            }\n" +
-    "            .bln-sidebarcontainer .bln-sub-toggle .bln-icon {\n" +
-    "              width: 37px;\n" +
-    "              color: #ccc;\n" +
-    "              -webkit-transition: -webkit-transform .35s, color .2s;\n" +
-    "                      transition: transform .35s, color .2s;\n" +
-    "            }\n" +
-    "            .bln-sidebarcontainer .bln-sub-toggle .bln-icon .open,\n" +
-    "            .bln-sidebarcontainer .bln-sub-toggle .bln-icon .close {\n" +
-    "              position: absolute;\n" +
-    "              -webkit-transition: opacity .35s;\n" +
-    "                      transition: opacity .35s;\n" +
-    "            }\n" +
-    "            .bln-sidebarcontainer .bln-sub-toggle .bln-icon .close {\n" +
-    "              opacity: 0;\n" +
-    "              pointer-events: none;\n" +
-    "            }\n" +
-    "            .bln-sidebarcontainer .bln-sub-toggle:hover {\n" +
-    "              opacity: 1;\n" +
-    "            }\n" +
-    "            .bln-sidebarcontainer .bln-sub-toggle:hover .bln-icon {\n" +
-    "              color: #fff;\n" +
-    "            }\n" +
-    "            .bln-sidebarcontainer .bln-sub-toggle.bln-state-ontop {\n" +
-    "              opacity: 1;\n" +
-    "            }\n" +
-    "            .bln-sidebarcontainer .bln-sub-toggle.bln-state-open {\n" +
-    "              opacity: 1;\n" +
-    "            }\n" +
-    "            .bln-sidebarcontainer .bln-sub-toggle.bln-state-open .bln-icon {\n" +
-    "              -webkit-transform: translate3d(10px, 0, 0);\n" +
-    "                      transform: translate3d(10px, 0, 0);\n" +
-    "            }\n" +
-    "            .bln-sidebarcontainer .bln-sub-toggle.bln-state-open .bln-icon .open {\n" +
-    "              opacity: 0;\n" +
-    "              pointer-events: none;\n" +
-    "            }\n" +
-    "            .bln-sidebarcontainer .bln-sub-toggle.bln-state-open .bln-icon .close {\n" +
-    "              opacity: 1;\n" +
-    "              pointer-events: auto;\n" +
-    "            }\n" +
-    "            .bln-sidebarcontainer.bln-state-disablemobile {\n" +
-    "              opacity: 1;\n" +
-    "            }\n" +
-    "            @media only screen and (min-width: 768px) {\n" +
-    "              .bln-sidebarcontainer .bln-sub-toggle {\n" +
-    "                display: none;\n" +
-    "              }\n" +
-    "              .bln-sidebarcontainer.bln-state-disablemobile {\n" +
-    "                opacity: 1;\n" +
-    "                pointer-events: auto;\n" +
-    "              }\n" +
-    "            }\n" +
-    "            .bln-sidebaricon {\n" +
-    "              position: relative;\n" +
-    "            }\n" +
-    "            .bln-sidebaricon a {\n" +
-    "              display: block;\n" +
-    "              color: rgba(255, 255, 255, 0.5);\n" +
-    "              text-decoration: none;\n" +
-    "              padding-top: 22px;\n" +
-    "              font-size: 16px;\n" +
-    "              background: transparent;\n" +
-    "              height: 80px;\n" +
-    "              text-align: center;\n" +
-    "              -webkit-transition: background .2s, color .2s, opacity .2s;\n" +
-    "                      transition: background .2s, color .2s, opacity .2s;\n" +
-    "            }\n" +
-    "            .bln-sidebaricon a .bln-icon {\n" +
-    "              opacity: .5;\n" +
-    "              -webkit-transition: opacity .2s, -webkit-transform .2s;\n" +
-    "                      transition: opacity .2s, transform .2s;\n" +
-    "            }\n" +
-    "            .bln-sidebaricon a .bln-numberlabel {\n" +
-    "              display: block;\n" +
-    "              color: #f66567;\n" +
-    "              font-family: 'source-sans-pro', Helvetica, Arial, sans-serif;\n" +
-    "              position: absolute;\n" +
-    "            }\n" +
-    "            .bln-sidebaricon a .bln-numberlabel-link {\n" +
-    "              bottom: 50px;\n" +
-    "              right: 47px;\n" +
-    "            }\n" +
-    "            .bln-sidebaricon a .bln-sub-dotlabel {\n" +
-    "              background-color: #f66567;\n" +
-    "              width: 6px;\n" +
-    "              height: 6px;\n" +
-    "              border-radius: 50%;\n" +
-    "              position: absolute;\n" +
-    "              -webkit-transition: opacity .2s;\n" +
-    "                      transition: opacity .2s;\n" +
-    "              opacity: 0;\n" +
-    "              -webkit-animation: dotlabel_bounce 0.35s cubic-bezier(0.2, 0.54, 0.43, 0.85) 0s infinite alternate;\n" +
-    "                      animation: dotlabel_bounce 0.35s cubic-bezier(0.2, 0.54, 0.43, 0.85) 0s infinite alternate;\n" +
-    "            }\n" +
-    "            @-webkit-keyframes dotlabel_bounce {\n" +
-    "              from {\n" +
-    "                -webkit-transform: translateY(0);\n" +
-    "                        transform: translateY(0);\n" +
-    "              }\n" +
-    "              to {\n" +
-    "                -webkit-transform: translateY(-4px);\n" +
-    "                        transform: translateY(-4px);\n" +
-    "              }\n" +
-    "            }\n" +
-    "            @keyframes dotlabel_bounce {\n" +
-    "              from {\n" +
-    "                -webkit-transform: translateY(0);\n" +
-    "                        transform: translateY(0);\n" +
-    "              }\n" +
-    "              to {\n" +
-    "                -webkit-transform: translateY(-4px);\n" +
-    "                        transform: translateY(-4px);\n" +
-    "              }\n" +
-    "            }\n" +
-    "            .bln-sidebaricon a .bln-sub-dotlabel.bln-state-active {\n" +
-    "              opacity: 1;\n" +
-    "            }\n" +
-    "            .bln-sidebaricon a .bln-sub-dotlabel-horn {\n" +
-    "              top: 20px;\n" +
-    "              left: 20px;\n" +
-    "            }\n" +
-    "            .bln-sidebaricon a:hover {\n" +
-    "              color: rgba(255, 255, 255, 0.65);\n" +
-    "            }\n" +
-    "            .bln-sidebaricon a:hover .bln-icon {\n" +
-    "              opacity: 1;\n" +
-    "            }\n" +
-    "            .bln-sidebaricon.bln-state-active a {\n" +
-    "              background-color: #252525;\n" +
-    "              color: rgba(255, 255, 255, 0.65);\n" +
-    "            }\n" +
-    "            .bln-sidebaricon.bln-state-active a .bln-icon {\n" +
-    "              opacity: 1;\n" +
-    "            }\n" +
-    "            .bln-sidebaricon-text a {\n" +
-    "              padding-top: 13px;\n" +
-    "            }\n" +
-    "            .bln-sidebaricon-text a .bln-icon {\n" +
-    "              display: block;\n" +
-    "              margin-bottom: 5px;\n" +
-    "            }\n" +
-    "            .bln-sidebaricon-text-small a {\n" +
-    "              font-size: 12.5px;\n" +
-    "            }\n" +
-    "            .bln-sidebaricon-avatar {\n" +
-    "              background-size: cover;\n" +
-    "              background-position: center center;\n" +
-    "              height: 80px;\n" +
-    "            }\n" +
-    "            .bln-sidebaricon-avatar a {\n" +
-    "              background-color: transparent;\n" +
-    "            }\n" +
-    "            .bln-sidebaricon-avatar a:hover {\n" +
-    "              background-color: rgba(56, 56, 56, 0.2);\n" +
-    "            }\n" +
-    "            .bln-sidebaricon-logo a {\n" +
-    "              position: relative;\n" +
-    "              height: auto;\n" +
-    "              padding-top: 40px;\n" +
-    "              padding-bottom: 32px;\n" +
-    "            }\n" +
-    "            .bln-sidebaricon-logo a .bln-icon {\n" +
-    "              position: absolute;\n" +
-    "              left: 7px;\n" +
-    "              top: 50%;\n" +
-    "              margin-top: -7px;\n" +
-    "              opacity: 0;\n" +
-    "              -webkit-transform: translateX(8px);\n" +
-    "                      transform: translateX(8px);\n" +
-    "            }\n" +
-    "            .bln-sidebaricon-logo a:hover {\n" +
-    "              background: transparent;\n" +
-    "            }\n" +
-    "            .bln-sidebaricon-logo a:hover .bln-icon {\n" +
-    "              -webkit-transform: translateX(0);\n" +
-    "                      transform: translateX(0);\n" +
-    "              opacity: 1;\n" +
-    "            }\n" +
-    "            .bln-sidebaricon-logo .image {\n" +
-    "              display: inline-block;\n" +
-    "              height: 43px;\n" +
-    "            }\n" +
-    "            .bln-sidebaricon-logo-nolink {\n" +
-    "              padding-top: 40px;\n" +
-    "              padding-bottom: 32px;\n" +
-    "            }\n" +
-    "            .bln-homeheader {\n" +
-    "              position: relative;\n" +
-    "              background: #32b38c;\n" +
-    "              color: white;\n" +
-    "              overflow: hidden;\n" +
-    "            }\n" +
-    "            .bln-homeheader .bln-section {\n" +
-    "              position: relative;\n" +
-    "              background: transparent;\n" +
-    "              z-index: 1;\n" +
-    "            }\n" +
-    "            .bln-homeheader .bln-credits {\n" +
-    "              position: absolute;\n" +
-    "              bottom: 42px;\n" +
-    "              right: 30px;\n" +
-    "            }\n" +
-    "            .bln-homeheader .title {\n" +
-    "              font-size: 25px;\n" +
-    "              line-height: 1.3em;\n" +
-    "              font-weight: 600;\n" +
-    "              margin-top: -2px;\n" +
-    "            }\n" +
-    "            .bln-homeheader .subtitle {\n" +
-    "              color: white;\n" +
-    "              opacity: .5;\n" +
-    "              margin-top: 16px;\n" +
-    "              font-weight: 600;\n" +
-    "              line-height: 1.6em;\n" +
-    "            }\n" +
-    "            .bln-homeheader .buttons {\n" +
-    "              margin-top: 32px;\n" +
-    "            }\n" +
-    "            .bln-homeheader .buttons .playbutton {\n" +
-    "              width: 100%;\n" +
-    "              text-align: center;\n" +
-    "            }\n" +
-    "            .bln-homeheader .buttons .signupbutton {\n" +
-    "              margin-left: -22px;\n" +
-    "              margin-bottom: -20px;\n" +
-    "              margin-top: 10px;\n" +
-    "            }\n" +
-    "            .bln-homeheader .bln-movinggallery {\n" +
-    "              display: none;\n" +
-    "              position: absolute;\n" +
-    "              top: 0;\n" +
-    "              right: 80px;\n" +
-    "              width: 400px;\n" +
-    "              height: 100%;\n" +
-    "            }\n" +
-    "            @media screen and (min-width: 480px) {\n" +
-    "              .bln-homeheader .bln-credits {\n" +
-    "                bottom: auto;\n" +
-    "                top: 30px;\n" +
-    "              }\n" +
-    "              .bln-homeheader .title {\n" +
-    "                font-size: 35px;\n" +
-    "                margin-top: -9px;\n" +
-    "              }\n" +
-    "              .bln-homeheader .subtitle {\n" +
-    "                width: 80%;\n" +
-    "              }\n" +
-    "              .bln-homeheader .buttons .playbutton {\n" +
-    "                width: auto;\n" +
-    "              }\n" +
-    "              .bln-homeheader .buttons .signupbutton {\n" +
-    "                margin-bottom: 0;\n" +
-    "              }\n" +
-    "            }\n" +
-    "            @media screen and (min-width: 768px) {\n" +
-    "              .bln-homeheader .bln-movinggallery {\n" +
-    "                display: block;\n" +
-    "                opacity: .5;\n" +
-    "              }\n" +
-    "              .bln-homeheader .title {\n" +
-    "                width: 70%;\n" +
-    "                font-size: 48px;\n" +
-    "                margin-top: -13px;\n" +
-    "              }\n" +
-    "              .bln-homeheader .subtitle {\n" +
-    "                width: 60%;\n" +
-    "                font-size: 18px;\n" +
-    "                margin-top: 6px;\n" +
-    "              }\n" +
-    "              .bln-homeheader .bln-credits {\n" +
-    "                top: 40px;\n" +
-    "                right: 40px;\n" +
-    "              }\n" +
-    "            }\n" +
-    "            @media screen and (min-width: 990px) {\n" +
-    "              .bln-homeheader .bln-movinggallery {\n" +
-    "                opacity: 1;\n" +
-    "              }\n" +
-    "              .bln-homeheader .title {\n" +
-    "                width: 90%;\n" +
-    "              }\n" +
-    "              .bln-homeheader .subtitle {\n" +
-    "                width: 80%;\n" +
-    "              }\n" +
-    "            }</style><script>function loadCSS(href){\n" +
-    "                var ss = window.document.createElement('link'),\n" +
-    "                    ref = window.document.getElementsByTagName('head')[0];\n" +
+    "<!doctype html><!--[if lte IE 8]><script type=\"text/javascript\">\r" +
     "\n" +
-    "                ss.rel = 'stylesheet';\n" +
-    "                ss.href = href;\n" +
+    "    alert('This version of Internet Explorer is not supported by Bundlin. Please upgrade your browser to use Bundlin.');\r" +
     "\n" +
-    "                // temporarily, set media to something non-matching to ensure it'll\n" +
-    "                // fetch without blocking render\n" +
-    "                ss.media = 'only x';\n" +
+    "  </script><![endif]--><html lang=en ng-app=bundlin id=ng-app><head><meta charset=UTF-8><title ng-bind=SEO.title>Bundlin - the beauty of the web, bundled.</title><meta name=fragment content=!><style>.bln-sidebar {\r" +
     "\n" +
-    "                ref.parentNode.insertBefore(ss, ref);\n" +
+    "              position: absolute;\r" +
     "\n" +
-    "                setTimeout( function(){\n" +
-    "                  ss.media = 'all';\n" +
-    "                },0);\n" +
-    "            }\n" +
+    "              top: 0;\r" +
+    "\n" +
+    "              left: 0;\r" +
+    "\n" +
+    "              bottom: 0;\r" +
+    "\n" +
+    "              width: 80px;\r" +
+    "\n" +
+    "              background-color: #292929;\r" +
+    "\n" +
+    "              text-align: center;\r" +
+    "\n" +
+    "              border-right: 10px solid transparent;\r" +
+    "\n" +
+    "              z-index: 25;\r" +
+    "\n" +
+    "              box-sizing: content-box;\r" +
+    "\n" +
+    "              background-clip: padding-box;\r" +
+    "\n" +
+    "              -webkit-overflow-scrolling: touch;\r" +
+    "\n" +
+    "              -webkit-transition: border .35s, -webkit-transform .35s;\r" +
+    "\n" +
+    "                      transition: border .35s, transform .35s;\r" +
+    "\n" +
+    "              -webkit-animation: fadein .35s;\r" +
+    "\n" +
+    "                      animation: fadein .35s;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            @-webkit-keyframes fadein {\r" +
+    "\n" +
+    "              from {\r" +
+    "\n" +
+    "                opacity: 0;\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "              to {\r" +
+    "\n" +
+    "                opacity: 1;\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            @keyframes fadein {\r" +
+    "\n" +
+    "              from {\r" +
+    "\n" +
+    "                opacity: 0;\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "              to {\r" +
+    "\n" +
+    "                opacity: 1;\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebar .content {\r" +
+    "\n" +
+    "              position: relative;\r" +
+    "\n" +
+    "              height: 100%;\r" +
+    "\n" +
+    "              background-color: #292929;\r" +
+    "\n" +
+    "              z-index: 10;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebar .content .bottom {\r" +
+    "\n" +
+    "              position: absolute;\r" +
+    "\n" +
+    "              width: 100%;\r" +
+    "\n" +
+    "              bottom: 0;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebar .content .group {\r" +
+    "\n" +
+    "              list-style: none;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebar .content .group-topmargin {\r" +
+    "\n" +
+    "              padding-top: 10px;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebar .content .group-bottommargin {\r" +
+    "\n" +
+    "              padding-bottom: 10px;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebar .group-animate {\r" +
+    "\n" +
+    "              -webkit-animation: fadein_group 1.5s;\r" +
+    "\n" +
+    "                      animation: fadein_group 1.5s;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            @-webkit-keyframes fadein_group {\r" +
+    "\n" +
+    "              0% {\r" +
+    "\n" +
+    "                opacity: 0;\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "              65% {\r" +
+    "\n" +
+    "                opacity: 0;\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "              100% {\r" +
+    "\n" +
+    "                opacity: 1;\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            @keyframes fadein_group {\r" +
+    "\n" +
+    "              0% {\r" +
+    "\n" +
+    "                opacity: 0;\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "              65% {\r" +
+    "\n" +
+    "                opacity: 0;\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "              100% {\r" +
+    "\n" +
+    "                opacity: 1;\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            @media only screen and (min-width: 768px) {\r" +
+    "\n" +
+    "              .bln-sidebar {\r" +
+    "\n" +
+    "                border-right-color: rgba(41, 41, 41, 0.1);\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-state-sidebaractive .bln-sidebar {\r" +
+    "\n" +
+    "              border-right-color: rgba(41, 41, 41, 0.1);\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-state-sideextensionactive .bln-sidebar {\r" +
+    "\n" +
+    "              border-right-color: transparent !important;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-header {\r" +
+    "\n" +
+    "              height: 600px;\r" +
+    "\n" +
+    "              min-height: 550px;\r" +
+    "\n" +
+    "              max-height: 1500px;\r" +
+    "\n" +
+    "              background-color: #333;\r" +
+    "\n" +
+    "              color: #fff;\r" +
+    "\n" +
+    "              position: relative;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-header .bln-headerbg,\r" +
+    "\n" +
+    "            .bln-header .bln-headercontent {\r" +
+    "\n" +
+    "              position: absolute;\r" +
+    "\n" +
+    "              top: 0;\r" +
+    "\n" +
+    "              right: 0;\r" +
+    "\n" +
+    "              bottom: 0;\r" +
+    "\n" +
+    "              left: 0;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-header .bln-headerbg {\r" +
+    "\n" +
+    "              background-image: url(/images/intro-header-bg.jpg);\r" +
+    "\n" +
+    "              background-repeat: no-repeat;\r" +
+    "\n" +
+    "              background-position: top 0px left 68%;\r" +
+    "\n" +
+    "              background-size: cover;\r" +
+    "\n" +
+    "              opacity: .6;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-header .bln-headercontent {\r" +
+    "\n" +
+    "              text-align: center;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-header .bln-title {\r" +
+    "\n" +
+    "              text-shadow: 0px 0px 80px rgba(0, 0, 0, 0.3);\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-header .bln-title-sub {\r" +
+    "\n" +
+    "              margin-top: 10px;\r" +
+    "\n" +
+    "              text-shadow: 0px 0px 40px rgba(0, 0, 0, 0.6);\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-header .bln-button {\r" +
+    "\n" +
+    "              margin-top: 50px;\r" +
+    "\n" +
+    "              text-shadow: 0px 0px 80px rgba(0, 0, 0, 0.5);\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-header .bln-socials {\r" +
+    "\n" +
+    "              position: absolute;\r" +
+    "\n" +
+    "              top: 20px;\r" +
+    "\n" +
+    "              right: 20px;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-header .bln-credits {\r" +
+    "\n" +
+    "              position: absolute;\r" +
+    "\n" +
+    "              right: 20px;\r" +
+    "\n" +
+    "              bottom: 20px;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-header section {\r" +
+    "\n" +
+    "              position: absolute;\r" +
+    "\n" +
+    "              top: 50%;\r" +
+    "\n" +
+    "              left: 0;\r" +
+    "\n" +
+    "              right: 0;\r" +
+    "\n" +
+    "              height: 230px;\r" +
+    "\n" +
+    "              margin-top: -115px;\r" +
+    "\n" +
+    "              padding-left: 30px;\r" +
+    "\n" +
+    "              padding-right: 30px;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-headerlayer {\r" +
+    "\n" +
+    "              position: absolute;\r" +
+    "\n" +
+    "              top: 0;\r" +
+    "\n" +
+    "              right: 0;\r" +
+    "\n" +
+    "              bottom: 0;\r" +
+    "\n" +
+    "              left: 0;\r" +
+    "\n" +
+    "              background-color: rgba(50, 50, 50, 0.4);\r" +
+    "\n" +
+    "              background-image: url(/images/intro-header-bg-shadow.jpg);\r" +
+    "\n" +
+    "              background-repeat: repeat-x;\r" +
+    "\n" +
+    "              background-position: bottom center;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            @media screen and (max-width: 479px) {\r" +
+    "\n" +
+    "              .bln-header {\r" +
+    "\n" +
+    "                min-height: 550px;\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "              .bln-header .bln-handcraftedby {\r" +
+    "\n" +
+    "                -webkit-transform: translate(-100px, 37px);\r" +
+    "\n" +
+    "                        transform: translate(-100px, 37px);\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "              .bln-header section {\r" +
+    "\n" +
+    "                height: 350px;\r" +
+    "\n" +
+    "                margin-top: -200px;\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            @media screen and (min-width: 480px) {\r" +
+    "\n" +
+    "              .bln-header .bln-socials {\r" +
+    "\n" +
+    "                top: 40px;\r" +
+    "\n" +
+    "                right: 40px;\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "              .bln-header .bln-credits {\r" +
+    "\n" +
+    "                right: 40px;\r" +
+    "\n" +
+    "                bottom: 40px;\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebarcontainer {\r" +
+    "\n" +
+    "              position: relative;\r" +
+    "\n" +
+    "              -webkit-transition: opacity .5s;\r" +
+    "\n" +
+    "                      transition: opacity .5s;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebarcontainer .bln-sub-toggle {\r" +
+    "\n" +
+    "              position: absolute;\r" +
+    "\n" +
+    "              top: 0;\r" +
+    "\n" +
+    "              left: 80px;\r" +
+    "\n" +
+    "              padding: 20px;\r" +
+    "\n" +
+    "              opacity: .5;\r" +
+    "\n" +
+    "              -webkit-transition: opacity .2s, -webkit-transform .35s;\r" +
+    "\n" +
+    "                      transition: opacity .2s, transform .35s;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebarcontainer .bln-sub-toggle .bln-icon {\r" +
+    "\n" +
+    "              width: 37px;\r" +
+    "\n" +
+    "              color: #ccc;\r" +
+    "\n" +
+    "              -webkit-transition: -webkit-transform .35s, color .2s;\r" +
+    "\n" +
+    "                      transition: transform .35s, color .2s;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebarcontainer .bln-sub-toggle .bln-icon .open,\r" +
+    "\n" +
+    "            .bln-sidebarcontainer .bln-sub-toggle .bln-icon .close {\r" +
+    "\n" +
+    "              position: absolute;\r" +
+    "\n" +
+    "              -webkit-transition: opacity .35s;\r" +
+    "\n" +
+    "                      transition: opacity .35s;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebarcontainer .bln-sub-toggle .bln-icon .close {\r" +
+    "\n" +
+    "              opacity: 0;\r" +
+    "\n" +
+    "              pointer-events: none;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebarcontainer .bln-sub-toggle:hover {\r" +
+    "\n" +
+    "              opacity: 1;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebarcontainer .bln-sub-toggle:hover .bln-icon {\r" +
+    "\n" +
+    "              color: #fff;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebarcontainer .bln-sub-toggle.bln-state-ontop {\r" +
+    "\n" +
+    "              opacity: 1;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebarcontainer .bln-sub-toggle.bln-state-open {\r" +
+    "\n" +
+    "              opacity: 1;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebarcontainer .bln-sub-toggle.bln-state-open .bln-icon {\r" +
+    "\n" +
+    "              -webkit-transform: translate3d(10px, 0, 0);\r" +
+    "\n" +
+    "                      transform: translate3d(10px, 0, 0);\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebarcontainer .bln-sub-toggle.bln-state-open .bln-icon .open {\r" +
+    "\n" +
+    "              opacity: 0;\r" +
+    "\n" +
+    "              pointer-events: none;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebarcontainer .bln-sub-toggle.bln-state-open .bln-icon .close {\r" +
+    "\n" +
+    "              opacity: 1;\r" +
+    "\n" +
+    "              pointer-events: auto;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebarcontainer.bln-state-disablemobile {\r" +
+    "\n" +
+    "              opacity: 1;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            @media only screen and (min-width: 768px) {\r" +
+    "\n" +
+    "              .bln-sidebarcontainer .bln-sub-toggle {\r" +
+    "\n" +
+    "                display: none;\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "              .bln-sidebarcontainer.bln-state-disablemobile {\r" +
+    "\n" +
+    "                opacity: 1;\r" +
+    "\n" +
+    "                pointer-events: auto;\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebaricon {\r" +
+    "\n" +
+    "              position: relative;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebaricon a {\r" +
+    "\n" +
+    "              display: block;\r" +
+    "\n" +
+    "              color: rgba(255, 255, 255, 0.5);\r" +
+    "\n" +
+    "              text-decoration: none;\r" +
+    "\n" +
+    "              padding-top: 22px;\r" +
+    "\n" +
+    "              font-size: 16px;\r" +
+    "\n" +
+    "              background: transparent;\r" +
+    "\n" +
+    "              height: 80px;\r" +
+    "\n" +
+    "              text-align: center;\r" +
+    "\n" +
+    "              -webkit-transition: background .2s, color .2s, opacity .2s;\r" +
+    "\n" +
+    "                      transition: background .2s, color .2s, opacity .2s;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebaricon a .bln-icon {\r" +
+    "\n" +
+    "              opacity: .5;\r" +
+    "\n" +
+    "              -webkit-transition: opacity .2s, -webkit-transform .2s;\r" +
+    "\n" +
+    "                      transition: opacity .2s, transform .2s;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebaricon a .bln-numberlabel {\r" +
+    "\n" +
+    "              display: block;\r" +
+    "\n" +
+    "              color: #f66567;\r" +
+    "\n" +
+    "              font-family: 'source-sans-pro', Helvetica, Arial, sans-serif;\r" +
+    "\n" +
+    "              position: absolute;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebaricon a .bln-numberlabel-link {\r" +
+    "\n" +
+    "              bottom: 50px;\r" +
+    "\n" +
+    "              right: 47px;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebaricon a .bln-sub-dotlabel {\r" +
+    "\n" +
+    "              background-color: #f66567;\r" +
+    "\n" +
+    "              width: 6px;\r" +
+    "\n" +
+    "              height: 6px;\r" +
+    "\n" +
+    "              border-radius: 50%;\r" +
+    "\n" +
+    "              position: absolute;\r" +
+    "\n" +
+    "              -webkit-transition: opacity .2s;\r" +
+    "\n" +
+    "                      transition: opacity .2s;\r" +
+    "\n" +
+    "              opacity: 0;\r" +
+    "\n" +
+    "              -webkit-animation: dotlabel_bounce 0.35s cubic-bezier(0.2, 0.54, 0.43, 0.85) 0s infinite alternate;\r" +
+    "\n" +
+    "                      animation: dotlabel_bounce 0.35s cubic-bezier(0.2, 0.54, 0.43, 0.85) 0s infinite alternate;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            @-webkit-keyframes dotlabel_bounce {\r" +
+    "\n" +
+    "              from {\r" +
+    "\n" +
+    "                -webkit-transform: translateY(0);\r" +
+    "\n" +
+    "                        transform: translateY(0);\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "              to {\r" +
+    "\n" +
+    "                -webkit-transform: translateY(-4px);\r" +
+    "\n" +
+    "                        transform: translateY(-4px);\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            @keyframes dotlabel_bounce {\r" +
+    "\n" +
+    "              from {\r" +
+    "\n" +
+    "                -webkit-transform: translateY(0);\r" +
+    "\n" +
+    "                        transform: translateY(0);\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "              to {\r" +
+    "\n" +
+    "                -webkit-transform: translateY(-4px);\r" +
+    "\n" +
+    "                        transform: translateY(-4px);\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebaricon a .bln-sub-dotlabel.bln-state-active {\r" +
+    "\n" +
+    "              opacity: 1;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebaricon a .bln-sub-dotlabel-horn {\r" +
+    "\n" +
+    "              top: 20px;\r" +
+    "\n" +
+    "              left: 20px;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebaricon a:hover {\r" +
+    "\n" +
+    "              color: rgba(255, 255, 255, 0.65);\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebaricon a:hover .bln-icon {\r" +
+    "\n" +
+    "              opacity: 1;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebaricon.bln-state-active a {\r" +
+    "\n" +
+    "              background-color: #252525;\r" +
+    "\n" +
+    "              color: rgba(255, 255, 255, 0.65);\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebaricon.bln-state-active a .bln-icon {\r" +
+    "\n" +
+    "              opacity: 1;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebaricon-text a {\r" +
+    "\n" +
+    "              padding-top: 13px;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebaricon-text a .bln-icon {\r" +
+    "\n" +
+    "              display: block;\r" +
+    "\n" +
+    "              margin-bottom: 5px;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebaricon-text-small a {\r" +
+    "\n" +
+    "              font-size: 12.5px;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebaricon-avatar {\r" +
+    "\n" +
+    "              background-size: cover;\r" +
+    "\n" +
+    "              background-position: center center;\r" +
+    "\n" +
+    "              height: 80px;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebaricon-avatar a {\r" +
+    "\n" +
+    "              background-color: transparent;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebaricon-avatar a:hover {\r" +
+    "\n" +
+    "              background-color: rgba(56, 56, 56, 0.2);\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebaricon-logo a {\r" +
+    "\n" +
+    "              position: relative;\r" +
+    "\n" +
+    "              height: auto;\r" +
+    "\n" +
+    "              padding-top: 40px;\r" +
+    "\n" +
+    "              padding-bottom: 32px;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebaricon-logo a .bln-icon {\r" +
+    "\n" +
+    "              position: absolute;\r" +
+    "\n" +
+    "              left: 7px;\r" +
+    "\n" +
+    "              top: 50%;\r" +
+    "\n" +
+    "              margin-top: -7px;\r" +
+    "\n" +
+    "              opacity: 0;\r" +
+    "\n" +
+    "              -webkit-transform: translateX(8px);\r" +
+    "\n" +
+    "                      transform: translateX(8px);\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebaricon-logo a:hover {\r" +
+    "\n" +
+    "              background: transparent;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebaricon-logo a:hover .bln-icon {\r" +
+    "\n" +
+    "              -webkit-transform: translateX(0);\r" +
+    "\n" +
+    "                      transform: translateX(0);\r" +
+    "\n" +
+    "              opacity: 1;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebaricon-logo .image {\r" +
+    "\n" +
+    "              display: inline-block;\r" +
+    "\n" +
+    "              height: 43px;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-sidebaricon-logo-nolink {\r" +
+    "\n" +
+    "              padding-top: 40px;\r" +
+    "\n" +
+    "              padding-bottom: 32px;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-homeheader {\r" +
+    "\n" +
+    "              position: relative;\r" +
+    "\n" +
+    "              background: #32b38c;\r" +
+    "\n" +
+    "              color: white;\r" +
+    "\n" +
+    "              overflow: hidden;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-homeheader .bln-section {\r" +
+    "\n" +
+    "              position: relative;\r" +
+    "\n" +
+    "              background: transparent;\r" +
+    "\n" +
+    "              z-index: 1;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-homeheader .bln-credits {\r" +
+    "\n" +
+    "              position: absolute;\r" +
+    "\n" +
+    "              bottom: 42px;\r" +
+    "\n" +
+    "              right: 30px;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-homeheader .title {\r" +
+    "\n" +
+    "              font-size: 25px;\r" +
+    "\n" +
+    "              line-height: 1.3em;\r" +
+    "\n" +
+    "              font-weight: 600;\r" +
+    "\n" +
+    "              margin-top: -2px;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-homeheader .subtitle {\r" +
+    "\n" +
+    "              color: white;\r" +
+    "\n" +
+    "              opacity: .5;\r" +
+    "\n" +
+    "              margin-top: 16px;\r" +
+    "\n" +
+    "              font-weight: 600;\r" +
+    "\n" +
+    "              line-height: 1.6em;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-homeheader .buttons {\r" +
+    "\n" +
+    "              margin-top: 32px;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-homeheader .buttons .playbutton {\r" +
+    "\n" +
+    "              width: 100%;\r" +
+    "\n" +
+    "              text-align: center;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-homeheader .buttons .signupbutton {\r" +
+    "\n" +
+    "              margin-left: -22px;\r" +
+    "\n" +
+    "              margin-bottom: -20px;\r" +
+    "\n" +
+    "              margin-top: 10px;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            .bln-homeheader .bln-movinggallery {\r" +
+    "\n" +
+    "              display: none;\r" +
+    "\n" +
+    "              position: absolute;\r" +
+    "\n" +
+    "              top: 0;\r" +
+    "\n" +
+    "              right: 80px;\r" +
+    "\n" +
+    "              width: 400px;\r" +
+    "\n" +
+    "              height: 100%;\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            @media screen and (min-width: 480px) {\r" +
+    "\n" +
+    "              .bln-homeheader .bln-credits {\r" +
+    "\n" +
+    "                bottom: auto;\r" +
+    "\n" +
+    "                top: 30px;\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "              .bln-homeheader .title {\r" +
+    "\n" +
+    "                font-size: 35px;\r" +
+    "\n" +
+    "                margin-top: -9px;\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "              .bln-homeheader .subtitle {\r" +
+    "\n" +
+    "                width: 80%;\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "              .bln-homeheader .buttons .playbutton {\r" +
+    "\n" +
+    "                width: auto;\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "              .bln-homeheader .buttons .signupbutton {\r" +
+    "\n" +
+    "                margin-bottom: 0;\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            @media screen and (min-width: 768px) {\r" +
+    "\n" +
+    "              .bln-homeheader .bln-movinggallery {\r" +
+    "\n" +
+    "                display: block;\r" +
+    "\n" +
+    "                opacity: .5;\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "              .bln-homeheader .title {\r" +
+    "\n" +
+    "                width: 70%;\r" +
+    "\n" +
+    "                font-size: 48px;\r" +
+    "\n" +
+    "                margin-top: -13px;\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "              .bln-homeheader .subtitle {\r" +
+    "\n" +
+    "                width: 60%;\r" +
+    "\n" +
+    "                font-size: 18px;\r" +
+    "\n" +
+    "                margin-top: 6px;\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "              .bln-homeheader .bln-credits {\r" +
+    "\n" +
+    "                top: 40px;\r" +
+    "\n" +
+    "                right: 40px;\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
+    "            @media screen and (min-width: 990px) {\r" +
+    "\n" +
+    "              .bln-homeheader .bln-movinggallery {\r" +
+    "\n" +
+    "                opacity: 1;\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "              .bln-homeheader .title {\r" +
+    "\n" +
+    "                width: 90%;\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "              .bln-homeheader .subtitle {\r" +
+    "\n" +
+    "                width: 80%;\r" +
+    "\n" +
+    "              }\r" +
+    "\n" +
+    "            }</style><script>function loadCSS(href){\r" +
+    "\n" +
+    "                var ss = window.document.createElement('link'),\r" +
+    "\n" +
+    "                    ref = window.document.getElementsByTagName('head')[0];\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                ss.rel = 'stylesheet';\r" +
+    "\n" +
+    "                ss.href = href;\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                // temporarily, set media to something non-matching to ensure it'll\r" +
+    "\n" +
+    "                // fetch without blocking render\r" +
+    "\n" +
+    "                ss.media = 'only x';\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                ref.parentNode.insertBefore(ss, ref);\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                setTimeout( function(){\r" +
+    "\n" +
+    "                  ss.media = 'all';\r" +
+    "\n" +
+    "                },0);\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
     "            loadCSS('/css/not-critical.css?v=@@TIMESTAMP@@');</script><noscript><link rel=stylesheet href=\"/css/app.css?v=@@TIMESTAMP@@\"></noscript><link rel=\"shortcut icon\" href=/favicon.ico><link rel=apple-touch-icon sizes=57x57 href=/favicons/apple-touch-icon-57x57.png><link rel=apple-touch-icon sizes=114x114 href=/favicons/apple-touch-icon-114x114.png><link rel=apple-touch-icon sizes=72x72 href=/favicons/apple-touch-icon-72x72.png><link rel=apple-touch-icon sizes=144x144 href=/favicons/apple-touch-icon-144x144.png><link rel=apple-touch-icon sizes=60x60 href=/favicons/apple-touch-icon-60x60.png><link rel=apple-touch-icon sizes=120x120 href=/favicons/apple-touch-icon-120x120.png><link rel=apple-touch-icon sizes=76x76 href=/favicons/apple-touch-icon-76x76.png><link rel=apple-touch-icon sizes=152x152 href=/favicons/apple-touch-icon-152x152.png><link rel=apple-touch-icon sizes=180x180 href=/favicons/apple-touch-icon-180x180.png><meta name=apple-mobile-web-app-title content=Bundlin><link rel=icon type=image/png href=/favicons/favicon-192x192.png sizes=192x192><link rel=icon type=image/png href=/favicons/favicon-160x160.png sizes=160x160><link rel=icon type=image/png href=/favicons/favicon-96x96.png sizes=96x96><link rel=icon type=image/png href=/favicons/favicon-16x16.png sizes=16x16><link rel=icon type=image/png href=/favicons/favicon-32x32.png sizes=32x32><meta name=msapplication-TileColor content=#292929><meta name=msapplication-TileImage content=/favicons/mstile-144x144.png><meta name=application-name content=Bundlin><meta name=viewport content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no\"><meta name=description content=\"{{ SEO.description }}\" ng-if=SEO.description><meta name=keywords content=\"{{ SEO.keywords }}\" ng-if=SEO.keywords><meta name=author content=\"{{ SEO.author }}\" ng-if=SEO.author><meta name=robots content=\"{{ SEO.robots }}\" ng-if=SEO.robots><meta property=\"{{ 'og:' + field }}\" content=\"{{ value }}\" ng-repeat=\"(field, value) in SEO.opengraph\"><meta name=\"{{ 'twitter:' + field }}\" content=\"{{ value }}\" ng-repeat=\"(field, value) in SEO.twitter\"></head><body><div ui-view=\"\"></div><div class=bln-tooltips></div><ul class=bln-modals></ul><div id=bln-toastcontainer></div><script src=\"https://maps.googleapis.com/maps/api/js?key=AIzaSyDpZYfosiwZ62qxOaa86CvlOC8_bmUgCdg\"></script><script src=\"/js/vendor.js?v=@@TIMESTAMP@@\"></script><script src=\"/js/app.js?v=@@TIMESTAMP@@\"></script></body></html>"
   );
 
@@ -5910,10 +6409,14 @@ app.service('scrollToggler', function() {
 
 
   $templateCache.put('views/layouts/app.html',
-    "<div class=bln-app id=top sidebar-state=\"\" sideextension-state=\"\" ng-class=\"{\n" +
-    "        'bln-state-sidebaractive': sidebarIsActive,\n" +
-    "        'bln-state-sideextensionactive': sideextensionIsActive,\n" +
-    "        'bln-state-modalactive': modalIsActive\n" +
+    "<div class=bln-app id=top sidebar-state=\"\" sideextension-state=\"\" ng-class=\"{\r" +
+    "\n" +
+    "        'bln-state-sidebaractive': sidebarIsActive,\r" +
+    "\n" +
+    "        'bln-state-sideextensionactive': sideextensionIsActive,\r" +
+    "\n" +
+    "        'bln-state-modalactive': modalIsActive\r" +
+    "\n" +
     "    }\"><sidebar></sidebar><main class=page ui-view=\"\" set-window=height></main></div>"
   );
 
@@ -6214,11 +6717,16 @@ app.service('scrollToggler', function() {
 
 
   $templateCache.put('views/partials/tooltip.html',
-    "<div class=bln-tooltipcontainer ng-class=\"{'active': state}\" ng-style=\"{\n" +
-    "    left: position.x + 'px',\n" +
-    "    top: position.y + 'px',\n" +
-    "    width: position.width + 'px',\n" +
-    "    height: position.height + 'px'\n" +
+    "<div class=bln-tooltipcontainer ng-class=\"{'active': state}\" ng-style=\"{\r" +
+    "\n" +
+    "    left: position.x + 'px',\r" +
+    "\n" +
+    "    top: position.y + 'px',\r" +
+    "\n" +
+    "    width: position.width + 'px',\r" +
+    "\n" +
+    "    height: position.height + 'px'\r" +
+    "\n" +
     "}\"><tooltip angle={{angle}} state={{state}} class=bln-tooltip style={{style}} size={{size}} select-selector={{selectSelector}}><partial name={{template}} scope=scope></partial></tooltip></div>"
   );
 
