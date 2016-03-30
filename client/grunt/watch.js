@@ -4,7 +4,11 @@ module.exports = {
     // targets
     styles_project: {
         files: [ 'src/styles/**/*.less' ],
-        tasks: [ 'less', 'copy:styles_project', 'autoprefixer:styles_project', 'copy:styles_project', 'clean:tmp' ]
+        tasks: [ 'less:styles_project', 'copy:styles_project', 'autoprefixer:styles_project', 'copy:styles_project', 'clean:tmp' ]
+    },
+    styles_notcritical: {
+        files: [ 'src/styles/**/*.less' ],
+        tasks: [ 'less:styles_notcritical', 'copy:styles_notcritical', 'autoprefixer:styles_notcritical', 'copy:styles_notcritical','clean:tmp' ]
     },
     styles_vendor: {
         files: [ 'src/vendor/**/*.css', 'src/vendor.json' ],

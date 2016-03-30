@@ -33,12 +33,14 @@ module.exports = {
         'concat:scripts_vendor',         // concatenate js vendor files          -> .grunt-tmp/js/
 
         // Autoprefixer processor
-        'autoprefixer:styles_project',   // autoprefix project css files         -> .grunt-tmp/css/app.css
+        'autoprefixer:styles_project',
+        'autoprefixer:styles_notcritical',   // autoprefix project css files         -> .grunt-tmp/css/app.css
 
         // Copy
         'copy:scripts_project',          // copy project scripts file            -> build/js/
         'copy:scripts_vendor',           // copy vendor scripts file             -> build/js/
-        'copy:styles_project',           // copy project & vendor styles files   -> build/css/
+        'copy:styles_project', 
+        'copy:styles_notcritical',           // copy project & vendor styles files   -> build/css/
         'copy:styles_vendor',            // copy project & vendor styles files   -> build/css/
         'copy:statics',                  // copy all static files to the root    -> build/
         'replace:cache_bust',            // make sure js/css cache is busted     -> build/

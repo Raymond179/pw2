@@ -1,4 +1,4 @@
-<div class="bln-sidebarcontainer" ng-class="{'bln-state-disablemobile': disableMobileSidebar}">
+<aside class="bln-sidebarcontainer" ng-class="{'bln-state-disablemobile': disableMobileSidebar}">
 
     <!-- Sidebar toggle -->
     <a class="bln-sub-toggle" ng-click="toggleSidebar()" ng-class="{'bln-state-ontop': onTop, 'bln-state-open': sidebarIsActive}">
@@ -10,36 +10,36 @@
 
     <!-- Sidebar -->
     <nav class="bln-sidebar">
-        <div class="content">
+        <ul class="content">
 
             <!-- bundlin logo -->
-            <ul class="group">
-                <li class="bln-sidebaricon bln-sidebaricon-logo">
+            <li class="group">
+                <div class="bln-sidebaricon bln-sidebaricon-logo">
                     <a ui-sref="app.home">
                         <figure class="image bln-sprite bln-sprite-logo {{generalLoading ? 'bln-sprite-logo-' + generalLoading : ''}}"></figure>
                         <span class="bln-icon bln-icon-budicon-4" ng-if="!$state.includes('app.home')"></span>
                     </a>
-                </li>
-            </ul>
+                </div>
+            </li>
 
             <!-- user -->
-            <ul class="group group-animate" ng-if="user.loggedIn">
-                <li class="bln-sidebaricon bln-sidebaricon-avatar" ng-style="{'background-image': 'url(' + (user.picture.h128 || user.picture.original || '/images/default.png') + ')'}">
+            <li class="group group-animate" ng-if="user.loggedIn">
+                <div class="bln-sidebaricon bln-sidebaricon-avatar" ng-style="{'background-image': 'url(' + (user.picture.h128 || user.picture.original || '/images/default.png') + ')'}">
                     <a ui-sref="app.view_profile.bundles({ profileScreenName: user.username })"></a>
-                </li>
-            </ul>
+                </div>
+            </li>
 
             <!-- no user -->
-            <ul class="group group-animate" ng-if="!user.loggedIn">
-                <li class="bln-sidebaricon bln-sidebaricon-text">
+            <li class="group group-animate" ng-if="!user.loggedIn">
+                <div class="bln-sidebaricon bln-sidebaricon-text">
                     <a title="Sign in" class="text" ng-click="login()">
                         <span class="bln-icon bln-icon-white bln-icon-sidebar bln-icon-budicon-23"></span>
                         Sign in
                     </a>
-                </li>
-            </ul>
+                </div>
+            </li>
 
-            <div class="top">
+            <li class="top">
                 <ul class="group group-topmargin group-animate" ng-if="user.loggedIn">
                     <!-- notifications -->
                     <li class="bln-sidebaricon" ng-class="{'bln-state-active': menuStates.notifications}">
@@ -57,9 +57,9 @@
                         </a>
                     </li>
                 </ul>
-            </div>
+            </li>
 
-            <div class="bottom">
+            <li class="bottom">
                 <ul class="group group-bottommargin group-animate" ng-if="user.loggedIn">
                     <!-- search -->
                     <!-- <li class="bln-sidebaricon">
@@ -75,9 +75,9 @@
                         </a>
                     </li>
                 </ul>
-            </div>
+            </li>
 
-        </div>
+        </ul>
     </nav>
 
 
@@ -98,4 +98,4 @@
         </section>
     </div>
 
-</div>
+</aside>

@@ -20,6 +20,12 @@ module.exports = {
         src: 'app.css',
         dest: 'build/css'
     },
+    styles_notcritical: {
+        expand: true,
+        cwd: '.grunt-tmp/css',
+        src: 'not-critical.css',
+        dest: 'build/css'
+    },
     styles_vendor: {
         expand: true,
         cwd: '.grunt-tmp/css',

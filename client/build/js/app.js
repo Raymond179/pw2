@@ -5373,7 +5373,504 @@ app.service('scrollToggler', function() {
   $templateCache.put('index.html',
     "<!doctype html><!--[if lte IE 8]><script type=\"text/javascript\">\n" +
     "    alert('This version of Internet Explorer is not supported by Bundlin. Please upgrade your browser to use Bundlin.');\n" +
-    "  </script><![endif]--><html lang=en ng-app=bundlin id=ng-app><head><meta charset=UTF-8><title ng-bind=SEO.title>Bundlin - the beauty of the web, bundled.</title><meta name=fragment content=!><link rel=stylesheet href=\"/css/app.css?v=@@TIMESTAMP@@\"><link rel=\"shortcut icon\" href=/favicon.ico><link rel=apple-touch-icon sizes=57x57 href=/favicons/apple-touch-icon-57x57.png><link rel=apple-touch-icon sizes=114x114 href=/favicons/apple-touch-icon-114x114.png><link rel=apple-touch-icon sizes=72x72 href=/favicons/apple-touch-icon-72x72.png><link rel=apple-touch-icon sizes=144x144 href=/favicons/apple-touch-icon-144x144.png><link rel=apple-touch-icon sizes=60x60 href=/favicons/apple-touch-icon-60x60.png><link rel=apple-touch-icon sizes=120x120 href=/favicons/apple-touch-icon-120x120.png><link rel=apple-touch-icon sizes=76x76 href=/favicons/apple-touch-icon-76x76.png><link rel=apple-touch-icon sizes=152x152 href=/favicons/apple-touch-icon-152x152.png><link rel=apple-touch-icon sizes=180x180 href=/favicons/apple-touch-icon-180x180.png><meta name=apple-mobile-web-app-title content=Bundlin><link rel=icon type=image/png href=/favicons/favicon-192x192.png sizes=192x192><link rel=icon type=image/png href=/favicons/favicon-160x160.png sizes=160x160><link rel=icon type=image/png href=/favicons/favicon-96x96.png sizes=96x96><link rel=icon type=image/png href=/favicons/favicon-16x16.png sizes=16x16><link rel=icon type=image/png href=/favicons/favicon-32x32.png sizes=32x32><meta name=msapplication-TileColor content=#292929><meta name=msapplication-TileImage content=/favicons/mstile-144x144.png><meta name=application-name content=Bundlin><meta name=viewport content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no\"><meta name=description content=\"{{ SEO.description }}\" ng-if=SEO.description><meta name=keywords content=\"{{ SEO.keywords }}\" ng-if=SEO.keywords><meta name=author content=\"{{ SEO.author }}\" ng-if=SEO.author><meta name=robots content=\"{{ SEO.robots }}\" ng-if=SEO.robots><meta property=\"{{ 'og:' + field }}\" content=\"{{ value }}\" ng-repeat=\"(field, value) in SEO.opengraph\"><meta name=\"{{ 'twitter:' + field }}\" content=\"{{ value }}\" ng-repeat=\"(field, value) in SEO.twitter\"></head><body><div ui-view=\"\"></div><div class=bln-tooltips></div><ul class=bln-modals></ul><div id=bln-toastcontainer></div><script src=\"https://maps.googleapis.com/maps/api/js?key=AIzaSyDpZYfosiwZ62qxOaa86CvlOC8_bmUgCdg\"></script><script src=\"/js/vendor.js?v=@@TIMESTAMP@@\"></script><script src=\"/js/app.js?v=@@TIMESTAMP@@\"></script></body></html>"
+    "  </script><![endif]--><html lang=en ng-app=bundlin id=ng-app><head><meta charset=UTF-8><title ng-bind=SEO.title>Bundlin - the beauty of the web, bundled.</title><meta name=fragment content=!><style>.bln-sidebar {\n" +
+    "              position: absolute;\n" +
+    "              top: 0;\n" +
+    "              left: 0;\n" +
+    "              bottom: 0;\n" +
+    "              width: 80px;\n" +
+    "              background-color: #292929;\n" +
+    "              text-align: center;\n" +
+    "              border-right: 10px solid transparent;\n" +
+    "              z-index: 25;\n" +
+    "              box-sizing: content-box;\n" +
+    "              background-clip: padding-box;\n" +
+    "              -webkit-overflow-scrolling: touch;\n" +
+    "              -webkit-transition: border .35s, -webkit-transform .35s;\n" +
+    "                      transition: border .35s, transform .35s;\n" +
+    "              -webkit-animation: fadein .35s;\n" +
+    "                      animation: fadein .35s;\n" +
+    "            }\n" +
+    "            @-webkit-keyframes fadein {\n" +
+    "              from {\n" +
+    "                opacity: 0;\n" +
+    "              }\n" +
+    "              to {\n" +
+    "                opacity: 1;\n" +
+    "              }\n" +
+    "            }\n" +
+    "            @keyframes fadein {\n" +
+    "              from {\n" +
+    "                opacity: 0;\n" +
+    "              }\n" +
+    "              to {\n" +
+    "                opacity: 1;\n" +
+    "              }\n" +
+    "            }\n" +
+    "            .bln-sidebar .content {\n" +
+    "              position: relative;\n" +
+    "              height: 100%;\n" +
+    "              background-color: #292929;\n" +
+    "              z-index: 10;\n" +
+    "            }\n" +
+    "            .bln-sidebar .content .bottom {\n" +
+    "              position: absolute;\n" +
+    "              width: 100%;\n" +
+    "              bottom: 0;\n" +
+    "            }\n" +
+    "            .bln-sidebar .content .group {\n" +
+    "              list-style: none;\n" +
+    "            }\n" +
+    "            .bln-sidebar .content .group-topmargin {\n" +
+    "              padding-top: 10px;\n" +
+    "            }\n" +
+    "            .bln-sidebar .content .group-bottommargin {\n" +
+    "              padding-bottom: 10px;\n" +
+    "            }\n" +
+    "            .bln-sidebar .group-animate {\n" +
+    "              -webkit-animation: fadein_group 1.5s;\n" +
+    "                      animation: fadein_group 1.5s;\n" +
+    "            }\n" +
+    "            @-webkit-keyframes fadein_group {\n" +
+    "              0% {\n" +
+    "                opacity: 0;\n" +
+    "              }\n" +
+    "              65% {\n" +
+    "                opacity: 0;\n" +
+    "              }\n" +
+    "              100% {\n" +
+    "                opacity: 1;\n" +
+    "              }\n" +
+    "            }\n" +
+    "            @keyframes fadein_group {\n" +
+    "              0% {\n" +
+    "                opacity: 0;\n" +
+    "              }\n" +
+    "              65% {\n" +
+    "                opacity: 0;\n" +
+    "              }\n" +
+    "              100% {\n" +
+    "                opacity: 1;\n" +
+    "              }\n" +
+    "            }\n" +
+    "            @media only screen and (min-width: 768px) {\n" +
+    "              .bln-sidebar {\n" +
+    "                border-right-color: rgba(41, 41, 41, 0.1);\n" +
+    "              }\n" +
+    "            }\n" +
+    "            .bln-state-sidebaractive .bln-sidebar {\n" +
+    "              border-right-color: rgba(41, 41, 41, 0.1);\n" +
+    "            }\n" +
+    "            .bln-state-sideextensionactive .bln-sidebar {\n" +
+    "              border-right-color: transparent !important;\n" +
+    "            }\n" +
+    "            .bln-header {\n" +
+    "              height: 600px;\n" +
+    "              min-height: 550px;\n" +
+    "              max-height: 1500px;\n" +
+    "              background-color: #333;\n" +
+    "              color: #fff;\n" +
+    "              position: relative;\n" +
+    "            }\n" +
+    "            .bln-header .bln-headerbg,\n" +
+    "            .bln-header .bln-headercontent {\n" +
+    "              position: absolute;\n" +
+    "              top: 0;\n" +
+    "              right: 0;\n" +
+    "              bottom: 0;\n" +
+    "              left: 0;\n" +
+    "            }\n" +
+    "            .bln-header .bln-headerbg {\n" +
+    "              background-image: url(/images/intro-header-bg.jpg);\n" +
+    "              background-repeat: no-repeat;\n" +
+    "              background-position: top 0px left 68%;\n" +
+    "              background-size: cover;\n" +
+    "              opacity: .6;\n" +
+    "            }\n" +
+    "            .bln-header .bln-headercontent {\n" +
+    "              text-align: center;\n" +
+    "            }\n" +
+    "            .bln-header .bln-title {\n" +
+    "              text-shadow: 0px 0px 80px rgba(0, 0, 0, 0.3);\n" +
+    "            }\n" +
+    "            .bln-header .bln-title-sub {\n" +
+    "              margin-top: 10px;\n" +
+    "              text-shadow: 0px 0px 40px rgba(0, 0, 0, 0.6);\n" +
+    "            }\n" +
+    "            .bln-header .bln-button {\n" +
+    "              margin-top: 50px;\n" +
+    "              text-shadow: 0px 0px 80px rgba(0, 0, 0, 0.5);\n" +
+    "            }\n" +
+    "            .bln-header .bln-socials {\n" +
+    "              position: absolute;\n" +
+    "              top: 20px;\n" +
+    "              right: 20px;\n" +
+    "            }\n" +
+    "            .bln-header .bln-credits {\n" +
+    "              position: absolute;\n" +
+    "              right: 20px;\n" +
+    "              bottom: 20px;\n" +
+    "            }\n" +
+    "            .bln-header section {\n" +
+    "              position: absolute;\n" +
+    "              top: 50%;\n" +
+    "              left: 0;\n" +
+    "              right: 0;\n" +
+    "              height: 230px;\n" +
+    "              margin-top: -115px;\n" +
+    "              padding-left: 30px;\n" +
+    "              padding-right: 30px;\n" +
+    "            }\n" +
+    "            .bln-headerlayer {\n" +
+    "              position: absolute;\n" +
+    "              top: 0;\n" +
+    "              right: 0;\n" +
+    "              bottom: 0;\n" +
+    "              left: 0;\n" +
+    "              background-color: rgba(50, 50, 50, 0.4);\n" +
+    "              background-image: url(/images/intro-header-bg-shadow.jpg);\n" +
+    "              background-repeat: repeat-x;\n" +
+    "              background-position: bottom center;\n" +
+    "            }\n" +
+    "            @media screen and (max-width: 479px) {\n" +
+    "              .bln-header {\n" +
+    "                min-height: 550px;\n" +
+    "              }\n" +
+    "              .bln-header .bln-handcraftedby {\n" +
+    "                -webkit-transform: translate(-100px, 37px);\n" +
+    "                        transform: translate(-100px, 37px);\n" +
+    "              }\n" +
+    "              .bln-header section {\n" +
+    "                height: 350px;\n" +
+    "                margin-top: -200px;\n" +
+    "              }\n" +
+    "            }\n" +
+    "            @media screen and (min-width: 480px) {\n" +
+    "              .bln-header .bln-socials {\n" +
+    "                top: 40px;\n" +
+    "                right: 40px;\n" +
+    "              }\n" +
+    "              .bln-header .bln-credits {\n" +
+    "                right: 40px;\n" +
+    "                bottom: 40px;\n" +
+    "              }\n" +
+    "            }\n" +
+    "            .bln-sidebarcontainer {\n" +
+    "              position: relative;\n" +
+    "              -webkit-transition: opacity .5s;\n" +
+    "                      transition: opacity .5s;\n" +
+    "            }\n" +
+    "            .bln-sidebarcontainer .bln-sub-toggle {\n" +
+    "              position: absolute;\n" +
+    "              top: 0;\n" +
+    "              left: 80px;\n" +
+    "              padding: 20px;\n" +
+    "              opacity: .5;\n" +
+    "              -webkit-transition: opacity .2s, -webkit-transform .35s;\n" +
+    "                      transition: opacity .2s, transform .35s;\n" +
+    "            }\n" +
+    "            .bln-sidebarcontainer .bln-sub-toggle .bln-icon {\n" +
+    "              width: 37px;\n" +
+    "              color: #ccc;\n" +
+    "              -webkit-transition: -webkit-transform .35s, color .2s;\n" +
+    "                      transition: transform .35s, color .2s;\n" +
+    "            }\n" +
+    "            .bln-sidebarcontainer .bln-sub-toggle .bln-icon .open,\n" +
+    "            .bln-sidebarcontainer .bln-sub-toggle .bln-icon .close {\n" +
+    "              position: absolute;\n" +
+    "              -webkit-transition: opacity .35s;\n" +
+    "                      transition: opacity .35s;\n" +
+    "            }\n" +
+    "            .bln-sidebarcontainer .bln-sub-toggle .bln-icon .close {\n" +
+    "              opacity: 0;\n" +
+    "              pointer-events: none;\n" +
+    "            }\n" +
+    "            .bln-sidebarcontainer .bln-sub-toggle:hover {\n" +
+    "              opacity: 1;\n" +
+    "            }\n" +
+    "            .bln-sidebarcontainer .bln-sub-toggle:hover .bln-icon {\n" +
+    "              color: #fff;\n" +
+    "            }\n" +
+    "            .bln-sidebarcontainer .bln-sub-toggle.bln-state-ontop {\n" +
+    "              opacity: 1;\n" +
+    "            }\n" +
+    "            .bln-sidebarcontainer .bln-sub-toggle.bln-state-open {\n" +
+    "              opacity: 1;\n" +
+    "            }\n" +
+    "            .bln-sidebarcontainer .bln-sub-toggle.bln-state-open .bln-icon {\n" +
+    "              -webkit-transform: translate3d(10px, 0, 0);\n" +
+    "                      transform: translate3d(10px, 0, 0);\n" +
+    "            }\n" +
+    "            .bln-sidebarcontainer .bln-sub-toggle.bln-state-open .bln-icon .open {\n" +
+    "              opacity: 0;\n" +
+    "              pointer-events: none;\n" +
+    "            }\n" +
+    "            .bln-sidebarcontainer .bln-sub-toggle.bln-state-open .bln-icon .close {\n" +
+    "              opacity: 1;\n" +
+    "              pointer-events: auto;\n" +
+    "            }\n" +
+    "            .bln-sidebarcontainer.bln-state-disablemobile {\n" +
+    "              opacity: 1;\n" +
+    "            }\n" +
+    "            @media only screen and (min-width: 768px) {\n" +
+    "              .bln-sidebarcontainer .bln-sub-toggle {\n" +
+    "                display: none;\n" +
+    "              }\n" +
+    "              .bln-sidebarcontainer.bln-state-disablemobile {\n" +
+    "                opacity: 1;\n" +
+    "                pointer-events: auto;\n" +
+    "              }\n" +
+    "            }\n" +
+    "            .bln-sidebaricon {\n" +
+    "              position: relative;\n" +
+    "            }\n" +
+    "            .bln-sidebaricon a {\n" +
+    "              display: block;\n" +
+    "              color: rgba(255, 255, 255, 0.5);\n" +
+    "              text-decoration: none;\n" +
+    "              padding-top: 22px;\n" +
+    "              font-size: 16px;\n" +
+    "              background: transparent;\n" +
+    "              height: 80px;\n" +
+    "              text-align: center;\n" +
+    "              -webkit-transition: background .2s, color .2s, opacity .2s;\n" +
+    "                      transition: background .2s, color .2s, opacity .2s;\n" +
+    "            }\n" +
+    "            .bln-sidebaricon a .bln-icon {\n" +
+    "              opacity: .5;\n" +
+    "              -webkit-transition: opacity .2s, -webkit-transform .2s;\n" +
+    "                      transition: opacity .2s, transform .2s;\n" +
+    "            }\n" +
+    "            .bln-sidebaricon a .bln-numberlabel {\n" +
+    "              display: block;\n" +
+    "              color: #f66567;\n" +
+    "              font-family: 'source-sans-pro', Helvetica, Arial, sans-serif;\n" +
+    "              position: absolute;\n" +
+    "            }\n" +
+    "            .bln-sidebaricon a .bln-numberlabel-link {\n" +
+    "              bottom: 50px;\n" +
+    "              right: 47px;\n" +
+    "            }\n" +
+    "            .bln-sidebaricon a .bln-sub-dotlabel {\n" +
+    "              background-color: #f66567;\n" +
+    "              width: 6px;\n" +
+    "              height: 6px;\n" +
+    "              border-radius: 50%;\n" +
+    "              position: absolute;\n" +
+    "              -webkit-transition: opacity .2s;\n" +
+    "                      transition: opacity .2s;\n" +
+    "              opacity: 0;\n" +
+    "              -webkit-animation: dotlabel_bounce 0.35s cubic-bezier(0.2, 0.54, 0.43, 0.85) 0s infinite alternate;\n" +
+    "                      animation: dotlabel_bounce 0.35s cubic-bezier(0.2, 0.54, 0.43, 0.85) 0s infinite alternate;\n" +
+    "            }\n" +
+    "            @-webkit-keyframes dotlabel_bounce {\n" +
+    "              from {\n" +
+    "                -webkit-transform: translateY(0);\n" +
+    "                        transform: translateY(0);\n" +
+    "              }\n" +
+    "              to {\n" +
+    "                -webkit-transform: translateY(-4px);\n" +
+    "                        transform: translateY(-4px);\n" +
+    "              }\n" +
+    "            }\n" +
+    "            @keyframes dotlabel_bounce {\n" +
+    "              from {\n" +
+    "                -webkit-transform: translateY(0);\n" +
+    "                        transform: translateY(0);\n" +
+    "              }\n" +
+    "              to {\n" +
+    "                -webkit-transform: translateY(-4px);\n" +
+    "                        transform: translateY(-4px);\n" +
+    "              }\n" +
+    "            }\n" +
+    "            .bln-sidebaricon a .bln-sub-dotlabel.bln-state-active {\n" +
+    "              opacity: 1;\n" +
+    "            }\n" +
+    "            .bln-sidebaricon a .bln-sub-dotlabel-horn {\n" +
+    "              top: 20px;\n" +
+    "              left: 20px;\n" +
+    "            }\n" +
+    "            .bln-sidebaricon a:hover {\n" +
+    "              color: rgba(255, 255, 255, 0.65);\n" +
+    "            }\n" +
+    "            .bln-sidebaricon a:hover .bln-icon {\n" +
+    "              opacity: 1;\n" +
+    "            }\n" +
+    "            .bln-sidebaricon.bln-state-active a {\n" +
+    "              background-color: #252525;\n" +
+    "              color: rgba(255, 255, 255, 0.65);\n" +
+    "            }\n" +
+    "            .bln-sidebaricon.bln-state-active a .bln-icon {\n" +
+    "              opacity: 1;\n" +
+    "            }\n" +
+    "            .bln-sidebaricon-text a {\n" +
+    "              padding-top: 13px;\n" +
+    "            }\n" +
+    "            .bln-sidebaricon-text a .bln-icon {\n" +
+    "              display: block;\n" +
+    "              margin-bottom: 5px;\n" +
+    "            }\n" +
+    "            .bln-sidebaricon-text-small a {\n" +
+    "              font-size: 12.5px;\n" +
+    "            }\n" +
+    "            .bln-sidebaricon-avatar {\n" +
+    "              background-size: cover;\n" +
+    "              background-position: center center;\n" +
+    "              height: 80px;\n" +
+    "            }\n" +
+    "            .bln-sidebaricon-avatar a {\n" +
+    "              background-color: transparent;\n" +
+    "            }\n" +
+    "            .bln-sidebaricon-avatar a:hover {\n" +
+    "              background-color: rgba(56, 56, 56, 0.2);\n" +
+    "            }\n" +
+    "            .bln-sidebaricon-logo a {\n" +
+    "              position: relative;\n" +
+    "              height: auto;\n" +
+    "              padding-top: 40px;\n" +
+    "              padding-bottom: 32px;\n" +
+    "            }\n" +
+    "            .bln-sidebaricon-logo a .bln-icon {\n" +
+    "              position: absolute;\n" +
+    "              left: 7px;\n" +
+    "              top: 50%;\n" +
+    "              margin-top: -7px;\n" +
+    "              opacity: 0;\n" +
+    "              -webkit-transform: translateX(8px);\n" +
+    "                      transform: translateX(8px);\n" +
+    "            }\n" +
+    "            .bln-sidebaricon-logo a:hover {\n" +
+    "              background: transparent;\n" +
+    "            }\n" +
+    "            .bln-sidebaricon-logo a:hover .bln-icon {\n" +
+    "              -webkit-transform: translateX(0);\n" +
+    "                      transform: translateX(0);\n" +
+    "              opacity: 1;\n" +
+    "            }\n" +
+    "            .bln-sidebaricon-logo .image {\n" +
+    "              display: inline-block;\n" +
+    "              height: 43px;\n" +
+    "            }\n" +
+    "            .bln-sidebaricon-logo-nolink {\n" +
+    "              padding-top: 40px;\n" +
+    "              padding-bottom: 32px;\n" +
+    "            }\n" +
+    "            .bln-homeheader {\n" +
+    "              position: relative;\n" +
+    "              background: #32b38c;\n" +
+    "              color: white;\n" +
+    "              overflow: hidden;\n" +
+    "            }\n" +
+    "            .bln-homeheader .bln-section {\n" +
+    "              position: relative;\n" +
+    "              background: transparent;\n" +
+    "              z-index: 1;\n" +
+    "            }\n" +
+    "            .bln-homeheader .bln-credits {\n" +
+    "              position: absolute;\n" +
+    "              bottom: 42px;\n" +
+    "              right: 30px;\n" +
+    "            }\n" +
+    "            .bln-homeheader .title {\n" +
+    "              font-size: 25px;\n" +
+    "              line-height: 1.3em;\n" +
+    "              font-weight: 600;\n" +
+    "              margin-top: -2px;\n" +
+    "            }\n" +
+    "            .bln-homeheader .subtitle {\n" +
+    "              color: white;\n" +
+    "              opacity: .5;\n" +
+    "              margin-top: 16px;\n" +
+    "              font-weight: 600;\n" +
+    "              line-height: 1.6em;\n" +
+    "            }\n" +
+    "            .bln-homeheader .buttons {\n" +
+    "              margin-top: 32px;\n" +
+    "            }\n" +
+    "            .bln-homeheader .buttons .playbutton {\n" +
+    "              width: 100%;\n" +
+    "              text-align: center;\n" +
+    "            }\n" +
+    "            .bln-homeheader .buttons .signupbutton {\n" +
+    "              margin-left: -22px;\n" +
+    "              margin-bottom: -20px;\n" +
+    "              margin-top: 10px;\n" +
+    "            }\n" +
+    "            .bln-homeheader .bln-movinggallery {\n" +
+    "              display: none;\n" +
+    "              position: absolute;\n" +
+    "              top: 0;\n" +
+    "              right: 80px;\n" +
+    "              width: 400px;\n" +
+    "              height: 100%;\n" +
+    "            }\n" +
+    "            @media screen and (min-width: 480px) {\n" +
+    "              .bln-homeheader .bln-credits {\n" +
+    "                bottom: auto;\n" +
+    "                top: 30px;\n" +
+    "              }\n" +
+    "              .bln-homeheader .title {\n" +
+    "                font-size: 35px;\n" +
+    "                margin-top: -9px;\n" +
+    "              }\n" +
+    "              .bln-homeheader .subtitle {\n" +
+    "                width: 80%;\n" +
+    "              }\n" +
+    "              .bln-homeheader .buttons .playbutton {\n" +
+    "                width: auto;\n" +
+    "              }\n" +
+    "              .bln-homeheader .buttons .signupbutton {\n" +
+    "                margin-bottom: 0;\n" +
+    "              }\n" +
+    "            }\n" +
+    "            @media screen and (min-width: 768px) {\n" +
+    "              .bln-homeheader .bln-movinggallery {\n" +
+    "                display: block;\n" +
+    "                opacity: .5;\n" +
+    "              }\n" +
+    "              .bln-homeheader .title {\n" +
+    "                width: 70%;\n" +
+    "                font-size: 48px;\n" +
+    "                margin-top: -13px;\n" +
+    "              }\n" +
+    "              .bln-homeheader .subtitle {\n" +
+    "                width: 60%;\n" +
+    "                font-size: 18px;\n" +
+    "                margin-top: 6px;\n" +
+    "              }\n" +
+    "              .bln-homeheader .bln-credits {\n" +
+    "                top: 40px;\n" +
+    "                right: 40px;\n" +
+    "              }\n" +
+    "            }\n" +
+    "            @media screen and (min-width: 990px) {\n" +
+    "              .bln-homeheader .bln-movinggallery {\n" +
+    "                opacity: 1;\n" +
+    "              }\n" +
+    "              .bln-homeheader .title {\n" +
+    "                width: 90%;\n" +
+    "              }\n" +
+    "              .bln-homeheader .subtitle {\n" +
+    "                width: 80%;\n" +
+    "              }\n" +
+    "            }</style><script>function loadCSS(href){\n" +
+    "                var ss = window.document.createElement('link'),\n" +
+    "                    ref = window.document.getElementsByTagName('head')[0];\n" +
+    "\n" +
+    "                ss.rel = 'stylesheet';\n" +
+    "                ss.href = href;\n" +
+    "\n" +
+    "                // temporarily, set media to something non-matching to ensure it'll\n" +
+    "                // fetch without blocking render\n" +
+    "                ss.media = 'only x';\n" +
+    "\n" +
+    "                ref.parentNode.insertBefore(ss, ref);\n" +
+    "\n" +
+    "                setTimeout( function(){\n" +
+    "                  ss.media = 'all';\n" +
+    "                },0);\n" +
+    "            }\n" +
+    "            loadCSS('/css/not-critical.css?v=@@TIMESTAMP@@');</script><noscript><link rel=stylesheet href=\"/css/app.css?v=@@TIMESTAMP@@\"></noscript><link rel=\"shortcut icon\" href=/favicon.ico><link rel=apple-touch-icon sizes=57x57 href=/favicons/apple-touch-icon-57x57.png><link rel=apple-touch-icon sizes=114x114 href=/favicons/apple-touch-icon-114x114.png><link rel=apple-touch-icon sizes=72x72 href=/favicons/apple-touch-icon-72x72.png><link rel=apple-touch-icon sizes=144x144 href=/favicons/apple-touch-icon-144x144.png><link rel=apple-touch-icon sizes=60x60 href=/favicons/apple-touch-icon-60x60.png><link rel=apple-touch-icon sizes=120x120 href=/favicons/apple-touch-icon-120x120.png><link rel=apple-touch-icon sizes=76x76 href=/favicons/apple-touch-icon-76x76.png><link rel=apple-touch-icon sizes=152x152 href=/favicons/apple-touch-icon-152x152.png><link rel=apple-touch-icon sizes=180x180 href=/favicons/apple-touch-icon-180x180.png><meta name=apple-mobile-web-app-title content=Bundlin><link rel=icon type=image/png href=/favicons/favicon-192x192.png sizes=192x192><link rel=icon type=image/png href=/favicons/favicon-160x160.png sizes=160x160><link rel=icon type=image/png href=/favicons/favicon-96x96.png sizes=96x96><link rel=icon type=image/png href=/favicons/favicon-16x16.png sizes=16x16><link rel=icon type=image/png href=/favicons/favicon-32x32.png sizes=32x32><meta name=msapplication-TileColor content=#292929><meta name=msapplication-TileImage content=/favicons/mstile-144x144.png><meta name=application-name content=Bundlin><meta name=viewport content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no\"><meta name=description content=\"{{ SEO.description }}\" ng-if=SEO.description><meta name=keywords content=\"{{ SEO.keywords }}\" ng-if=SEO.keywords><meta name=author content=\"{{ SEO.author }}\" ng-if=SEO.author><meta name=robots content=\"{{ SEO.robots }}\" ng-if=SEO.robots><meta property=\"{{ 'og:' + field }}\" content=\"{{ value }}\" ng-repeat=\"(field, value) in SEO.opengraph\"><meta name=\"{{ 'twitter:' + field }}\" content=\"{{ value }}\" ng-repeat=\"(field, value) in SEO.twitter\"></head><body><div ui-view=\"\"></div><div class=bln-tooltips></div><ul class=bln-modals></ul><div id=bln-toastcontainer></div><script src=\"https://maps.googleapis.com/maps/api/js?key=AIzaSyDpZYfosiwZ62qxOaa86CvlOC8_bmUgCdg\"></script><script src=\"/js/vendor.js?v=@@TIMESTAMP@@\"></script><script src=\"/js/app.js?v=@@TIMESTAMP@@\"></script></body></html>"
   );
 
 
@@ -5417,7 +5914,7 @@ app.service('scrollToggler', function() {
     "        'bln-state-sidebaractive': sidebarIsActive,\n" +
     "        'bln-state-sideextensionactive': sideextensionIsActive,\n" +
     "        'bln-state-modalactive': modalIsActive\n" +
-    "    }\"><sidebar></sidebar><div class=page ui-view=\"\" set-window=height></div></div>"
+    "    }\"><sidebar></sidebar><main class=page ui-view=\"\" set-window=height></main></div>"
   );
 
 
@@ -5697,7 +6194,7 @@ app.service('scrollToggler', function() {
 
 
   $templateCache.put('views/partials/sidebar.html',
-    "<div class=bln-sidebarcontainer ng-class=\"{'bln-state-disablemobile': disableMobileSidebar}\"><a class=bln-sub-toggle ng-click=toggleSidebar() ng-class=\"{'bln-state-ontop': onTop, 'bln-state-open': sidebarIsActive}\"><span class=\"bln-icon bln-icon-darkbutton\"><span class=open>\"</span> <span class=close>f</span></span></a> <nav class=bln-sidebar><div class=content><ul class=group><li class=\"bln-sidebaricon bln-sidebaricon-logo\"><a ui-sref=app.home><figure class=\"image bln-sprite bln-sprite-logo {{generalLoading ? 'bln-sprite-logo-' + generalLoading : ''}}\"></figure><span class=\"bln-icon bln-icon-budicon-4\" ng-if=\"!$state.includes('app.home')\"></span></a></li></ul><ul class=\"group group-animate\" ng-if=user.loggedIn><li class=\"bln-sidebaricon bln-sidebaricon-avatar\" ng-style=\"{'background-image': 'url(' + (user.picture.h128 || user.picture.original || '/images/default.png') + ')'}\"><a ui-sref=\"app.view_profile.bundles({ profileScreenName: user.username })\"></a></li></ul><ul class=\"group group-animate\" ng-if=!user.loggedIn><li class=\"bln-sidebaricon bln-sidebaricon-text\"><a title=\"Sign in\" class=text ng-click=login()><span class=\"bln-icon bln-icon-white bln-icon-sidebar bln-icon-budicon-23\"></span> Sign in</a></li></ul><div class=top><ul class=\"group group-topmargin group-animate\" ng-if=user.loggedIn><li class=bln-sidebaricon ng-class=\"{'bln-state-active': menuStates.notifications}\"><a side-extension-toggle=notificationsMenu><span class=\"bln-sub-dotlabel bln-sub-dotlabel-horn\" ng-class=\"{ 'bln-state-active': user.hasUnreadNotifications() }\"></span> <span class=\"bln-icon bln-icon-white bln-icon-sidebar bln-icon-budicon-40\"></span></a></li><li class=\"bln-sidebaricon bln-sidebaricon-text bln-sidebaricon-text-small\" ng-class=\"{'bln-state-active': $state.includes('app.edit_bundle')}\"><a ng-click=\"user.hasRole('beta', 'admin') && createBundle()\"><span class=\"bln-icon bln-icon-white bln-icon-sidebar bln-icon-create-bundle-icon\"></span> New bundle</a></li></ul></div><div class=bottom><ul class=\"group group-bottommargin group-animate\" ng-if=user.loggedIn><li class=bln-sidebaricon ng-class=\"{'bln-state-active': menuStates.settings}\"><a side-extension-toggle=settingsMenu><span class=\"bln-icon bln-icon-white bln-icon-sidebar bln-icon-budicon-44\"></span></a></li></ul></div></div></nav><div ng-if=user.loggedIn><section side-extension=notificationsMenu class=\"bln-sideextension bln-sideextension-notifications\" ng-class=\"{'active': sideextension.state}\"><a href=# ng-click=\"closeSideExtension('notificationsMenu')\" class=bln-sub-closesideextension><span class=\"bln-icon bln-icon-budicon-5 bln-icon-lightbutton\"></span></a><ng-include src=\"'/views/partials/sideextensions/notificationsMenu.html?v=' + BLN_BUILD_TIMESTAMP\"></ng-include></section><section side-extension=settingsMenu class=\"bln-sideextension bln-sideextension-settings\" ng-class=\"{'active': sideextension.state}\"><a href=# ng-click=\"closeSideExtension('settingsMenu')\" class=bln-sub-closesideextension><span class=\"bln-icon bln-icon-budicon-5 bln-icon-lightbutton\"></span></a><ng-include src=\"'/views/partials/sideextensions/settingsMenu.html?v=' + BLN_BUILD_TIMESTAMP\"></ng-include></section></div></div>"
+    "<aside class=bln-sidebarcontainer ng-class=\"{'bln-state-disablemobile': disableMobileSidebar}\"><a class=bln-sub-toggle ng-click=toggleSidebar() ng-class=\"{'bln-state-ontop': onTop, 'bln-state-open': sidebarIsActive}\"><span class=\"bln-icon bln-icon-darkbutton\"><span class=open>\"</span> <span class=close>f</span></span></a> <nav class=bln-sidebar><ul class=content><li class=group><div class=\"bln-sidebaricon bln-sidebaricon-logo\"><a ui-sref=app.home><figure class=\"image bln-sprite bln-sprite-logo {{generalLoading ? 'bln-sprite-logo-' + generalLoading : ''}}\"></figure><span class=\"bln-icon bln-icon-budicon-4\" ng-if=\"!$state.includes('app.home')\"></span></a></div></li><li class=\"group group-animate\" ng-if=user.loggedIn><div class=\"bln-sidebaricon bln-sidebaricon-avatar\" ng-style=\"{'background-image': 'url(' + (user.picture.h128 || user.picture.original || '/images/default.png') + ')'}\"><a ui-sref=\"app.view_profile.bundles({ profileScreenName: user.username })\"></a></div></li><li class=\"group group-animate\" ng-if=!user.loggedIn><div class=\"bln-sidebaricon bln-sidebaricon-text\"><a title=\"Sign in\" class=text ng-click=login()><span class=\"bln-icon bln-icon-white bln-icon-sidebar bln-icon-budicon-23\"></span> Sign in</a></div></li><li class=top><ul class=\"group group-topmargin group-animate\" ng-if=user.loggedIn><li class=bln-sidebaricon ng-class=\"{'bln-state-active': menuStates.notifications}\"><a side-extension-toggle=notificationsMenu><span class=\"bln-sub-dotlabel bln-sub-dotlabel-horn\" ng-class=\"{ 'bln-state-active': user.hasUnreadNotifications() }\"></span> <span class=\"bln-icon bln-icon-white bln-icon-sidebar bln-icon-budicon-40\"></span></a></li><li class=\"bln-sidebaricon bln-sidebaricon-text bln-sidebaricon-text-small\" ng-class=\"{'bln-state-active': $state.includes('app.edit_bundle')}\"><a ng-click=\"user.hasRole('beta', 'admin') && createBundle()\"><span class=\"bln-icon bln-icon-white bln-icon-sidebar bln-icon-create-bundle-icon\"></span> New bundle</a></li></ul></li><li class=bottom><ul class=\"group group-bottommargin group-animate\" ng-if=user.loggedIn><li class=bln-sidebaricon ng-class=\"{'bln-state-active': menuStates.settings}\"><a side-extension-toggle=settingsMenu><span class=\"bln-icon bln-icon-white bln-icon-sidebar bln-icon-budicon-44\"></span></a></li></ul></li></ul></nav><div ng-if=user.loggedIn><section side-extension=notificationsMenu class=\"bln-sideextension bln-sideextension-notifications\" ng-class=\"{'active': sideextension.state}\"><a href=# ng-click=\"closeSideExtension('notificationsMenu')\" class=bln-sub-closesideextension><span class=\"bln-icon bln-icon-budicon-5 bln-icon-lightbutton\"></span></a><ng-include src=\"'/views/partials/sideextensions/notificationsMenu.html?v=' + BLN_BUILD_TIMESTAMP\"></ng-include></section><section side-extension=settingsMenu class=\"bln-sideextension bln-sideextension-settings\" ng-class=\"{'active': sideextension.state}\"><a href=# ng-click=\"closeSideExtension('settingsMenu')\" class=bln-sub-closesideextension><span class=\"bln-icon bln-icon-budicon-5 bln-icon-lightbutton\"></span></a><ng-include src=\"'/views/partials/sideextensions/settingsMenu.html?v=' + BLN_BUILD_TIMESTAMP\"></ng-include></section></div></aside>"
   );
 
 
