@@ -5,7 +5,7 @@
 #### Performance (Performance matters)
 Overzicht:
 - HTML semantischer
-- CSS..
+- Critical CSS
 
 ###### Before
 DOM: 690ms <br />
