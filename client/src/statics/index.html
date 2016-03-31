@@ -13,6 +13,9 @@
         <meta name="fragment" content="!" />
 
         <style>
+            .bln-app {font-family: Helvetica, Arial, sans-serif;}
+            .font-loaded .bln-app {font-family: 'source-sans-pro', Helvetica, Arial, sans-serif;}
+
             .bln-sidebar {
               position: absolute;
               top: 0;
@@ -519,6 +522,16 @@
             <!-- When no script is loaded -->
             <link rel="stylesheet" href="/css/app.css?v=@@TIMESTAMP@@">
         </noscript>
+
+        <script type="text/javascript" src="/js/ffo.js"></script>
+        <script type="text/javascript">
+          var observer = new FontFaceObserver('source-sans-pro');
+
+          observer.check().then(function () {
+              document.documentElement.className += " font-loaded";
+          });
+        </script>
+
         <link rel="shortcut icon" href="/favicon.ico">
         <link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-touch-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="114x114" href="/favicons/apple-touch-icon-114x114.png">

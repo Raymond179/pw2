@@ -13,6 +13,9 @@
         <meta name="fragment" content="!" />
 
         <style>
+            .bln-app {font-family: Helvetica, Arial, sans-serif;}
+            .font-loaded .bln-app {font-family: 'source-sans-pro', Helvetica, Arial, sans-serif;}
+
             .bln-sidebar {
               position: absolute;
               top: 0;
@@ -513,12 +516,22 @@
                   ss.media = 'all';
                 },0);
             }
-            loadCSS('/css/not-critical.css?v=1459367912875');
+            loadCSS('/css/not-critical.css?v=1459416071484');
         </script>
         <noscript>
             <!-- When no script is loaded -->
-            <link rel="stylesheet" href="/css/app.css?v=1459367912875">
+            <link rel="stylesheet" href="/css/app.css?v=1459416071484">
         </noscript>
+
+        <script type="text/javascript" src="/js/ffo.js"></script>
+        <script type="text/javascript">
+          var observer = new FontFaceObserver('source-sans-pro');
+
+          observer.check().then(function () {
+              document.documentElement.className += " font-loaded";
+          });
+        </script>
+
         <link rel="shortcut icon" href="/favicon.ico">
         <link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-touch-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="114x114" href="/favicons/apple-touch-icon-114x114.png">
@@ -562,7 +575,7 @@
 
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpZYfosiwZ62qxOaa86CvlOC8_bmUgCdg"></script>
 
-        <script type="text/javascript" src="/js/vendor.js?v=1459367912875"></script>
-        <script type="text/javascript" src="/js/app.js?v=1459367912875"></script>
+        <script type="text/javascript" src="/js/vendor.js?v=1459416071484"></script>
+        <script type="text/javascript" src="/js/app.js?v=1459416071484"></script>
     </body>
 </html>

@@ -38,6 +38,12 @@ module.exports = {
         src: '**',
         dest: 'build/'
     },
+    ffo: {
+        expand: true,
+        cwd: 'src/scripts/',
+        src: 'ffo.js',
+        dest: 'build/js/'
+    },
     images: {
         expand: true,
         cwd: '.grunt-tmp/images',

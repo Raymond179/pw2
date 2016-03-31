@@ -31,6 +31,10 @@ module.exports = {
         files: [ 'src/statics/images' ],
         tasks: [ 'imagemin:all', 'copy:images', 'clean:tmp' ]
     },
+    ffo: {
+        files: [ 'src/scripts/ffo.js' ],
+        tasks: [ 'copy:statics', 'clean:tmp' ]
+    },
 
 
     livereload: {

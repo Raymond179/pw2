@@ -7,6 +7,7 @@ Overzicht:
 - HTML semantischer
 - Critical CSS
 - Reduced images
+- Font face observer
 
 Alle tijden zijn gemeten met 4G (4mb/s 20ms RTT).
 
@@ -44,6 +45,18 @@ Load event: 7510ms <br />
 Images: van 3.23mb naar 1.72mb
 
 ![alt tag](https://github.com/RaymondKorrel/pw2/blob/student/raymond/readme/img.jpg)
+
+###### Font face observer
+De website had een 'Flash of invisible text' door het laden van de custom fonts. Daarom heb ik een standaard font neergezet totdat de custom fonts asynchroon zijn ingeladen. 
+
+Flash of invisible text:
+![alt tag](https://github.com/RaymondKorrel/pw2/blob/student/raymond/readme/foit.jpg)
+
+DOM: 360ms <br />
+First Paint: 838ms <br />
+Load event: 3490ms
+
+![alt tag](https://github.com/RaymondKorrel/pw2/blob/student/raymond/readme/font.jpg)
 
 #### Accessibility (Browser Technologies)
 Overzicht:
