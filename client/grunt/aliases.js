@@ -45,6 +45,7 @@ module.exports = {
         'copy:styles_vendor',            // copy project & vendor styles files   -> build/css/
         'copy:statics',                  // copy all static files to the root    -> build/
         'copy:ffo',
+        'copy:sw',
         'copy:images',           // copy project & vendor styles files   -> build/css/
         'replace:cache_bust',            // make sure js/css cache is busted     -> build/
 

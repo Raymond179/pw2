@@ -41,8 +41,14 @@ module.exports = {
     ffo: {
         expand: true,
         cwd: 'src/scripts/',
-        src: 'ffo.js',
-        dest: 'build/js/'
+        src: ['ffo.js','sw-register.js'],
+        dest: 'build/js/static/'
+    },
+    sw: {
+        expand: true,
+        cwd: 'src/scripts/',
+        src: 'sw.js',
+        dest: 'build/'
     },
     images: {
         expand: true,
