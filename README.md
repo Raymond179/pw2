@@ -70,7 +70,31 @@ Load event: 1160ms
 
 #### Accessibility (Browser Technologies)
 Overzicht:
-- ajfdakd
-- adk
+- Clickable divs
+- Unreadable text
 
-###### HTML semantischer
+###### Clickable divs
+Sommige knoppen waren divs en dus niet focusable. Door de divs te vervangen voor buttons komen ze in de 'tab flow' en werken ze ook op enter.
+
+```html
+<!-- Old -->
+<div class="playbutton"></div>
+<!-- New -->
+<button class="playbutton"></button>
+```
+
+###### Unreadable text
+Wanneer afbeeldingen zijn uitgeschakeld, zijn de titels van de feed niet te lezen doordat de tekst wit is en de achtergrond zwart.
+
+![alt tag](https://github.com/RaymondKorrel/pw2/blob/student/raymond/readme/no-img.jpg)
+
+Dit heb ik opgelost door de achtergrond van de achtergrond div een donkere kleur te geven.
+
+```css
+.background {
+	background: #292929;
+}
+```
+
+![alt tag](https://github.com/RaymondKorrel/pw2/blob/student/raymond/readme/no-img-after.jpg)
+

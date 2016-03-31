@@ -6063,6 +6063,7 @@ img {
   left: 0;
   background-size: cover;
   z-index: -1;
+  background: #292929;
 }
 .bln-bundletile .cover .shadows {
   position: absolute;

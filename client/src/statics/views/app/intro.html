@@ -17,18 +17,18 @@
             <h1 class="title">The beauty of the web, bundled.</h1>
             <p class="subtitle">Create, discover and share Bundles of links about your favorite subjects.</p>
             <div class="buttons">
-              <div class="playbutton bln-button bln-button-invert bln-button-play" ng-click="playVideo()" ng-show="!playvideo" ng-class="{'bln-button-played': video_played}">
+              <button class="playbutton bln-button bln-button-invert bln-button-play" ng-click="playVideo()" ng-show="!playvideo" ng-class="{'bln-button-played': video_played}">
                 <span class="bln-icon bln-icon-play-button"></span>
                 What's Bundlin all about?
-              </div>
-              <div class="playbutton bln-button bln-button-invert bln-button-stop" ng-click="stopVideo()" ng-show="playvideo">
+              </button>
+              <button class="playbutton bln-button bln-button-invert bln-button-stop" ng-click="stopVideo()" ng-show="playvideo">
                 <span class="bln-icon bln-icon-stop-button"></span>
                 Stop video
-              </div>
-              <div class="signupbutton bln-button bln-button-signup" scroll-to="#invitation" ng-show="!user.loggedIn || mobile">
+              </button>
+              <button class="signupbutton bln-button bln-button-signup" scroll-to="#invitation" ng-show="!user.loggedIn || mobile">
                 Log in / Sign up
                 <span class="bln-icon bln-icon-budicon-41"></span>
-              </div>
+              </button>
             </div>
           </div>
         </div>
