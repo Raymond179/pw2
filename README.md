@@ -8,6 +8,7 @@ Overzicht:
 - Critical CSS
 - Reduced images
 - Font face observer
+- Service worker
 
 Alle tijden zijn gemeten met 4G (4mb/s 20ms RTT).
 
@@ -57,6 +58,15 @@ First Paint: 838ms <br />
 Load event: 3490ms
 
 ![alt tag](https://github.com/RaymondKorrel/pw2/blob/student/raymond/readme/font.jpg)
+
+###### Service worker
+De service worker slaat bestanden op in de cache zodat ze sneller geladen kunnen worden.
+
+DOM: 986ms <br />
+First Paint: 974ms <br />
+Load event: 1160ms
+
+![alt tag](https://github.com/RaymondKorrel/pw2/blob/student/raymond/readme/sw.jpg)
 
 #### Accessibility (Browser Technologies)
 Overzicht:
