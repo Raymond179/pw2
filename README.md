@@ -98,3 +98,33 @@ Dit heb ik opgelost door de achtergrond van de achtergrond div een donkere kleur
 
 ![alt tag](https://github.com/RaymondKorrel/pw2/blob/student/raymond/readme/no-img-after.jpg)
 
+## Conclusie
+##### Overzicht aanpassingen
+- HTML semantischer
+- Critical CSS
+- Reduced images
+- Font face observer
+- Service worker
+- Clickable divs
+- Unreadable text
+
+De performance van de website is een stuk beter na de aanpassingen. Het verschil is hieronder te zien:
+
+###### Voor de wijzigingen
+DOM: 1810ms <br />
+First Paint: 3500ms <br />
+Load event: 8640ms
+
+###### Na de wijzigingen:
+
+DOM: 986ms <br />
+First Paint: 974ms <br />
+Load event: 1160ms
+
+###### Snelheids winst
+
+DOM: 824ms <br />
+First Paint: 2526ms <br />
+Load event: 7480ms
+
+Vooral de load event is een stuk verbeterd door de serviceworker en verkleinde afbeeldingen. Over het algemeen een hele verbetering in perfomance, en wat kleine toegankelijkheids verbeteringen.
